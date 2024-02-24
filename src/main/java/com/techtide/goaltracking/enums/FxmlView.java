@@ -1,28 +1,28 @@
 package com.techtide.goaltracking.enums;
 import java.util.ResourceBundle;
 public enum FxmlView {
-    LOGIN{
-        @Override
-        public String getTitle()
-        {
-            return getStringFromResourceBundle("login.title");
-        }
-        @Override
-        public String getFxmlFile() {
-            return "/fxml/login.fxml";
-        }
-    };
-//    SIGNUP {
+//    LOGIN{
 //        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("signUp.title");
+//        public String getTitle()
+//        {
+//            return getStringFromResourceBundle("login.title");
 //        }
-//
 //        @Override
 //        public String getFxmlFile() {
-//            return "/fxml/signUp.fxml";
+//            return "/fxml/login.fxml";
 //        }
-//    },
+//    };
+    SIGNUP {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("signUp.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/signUp.fxml";
+        }
+    };
 //    MENU{
 //        @Override
 //        public String getTitle() {
