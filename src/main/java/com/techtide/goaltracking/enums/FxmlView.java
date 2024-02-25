@@ -1,17 +1,17 @@
 package com.techtide.goaltracking.enums;
 import java.util.ResourceBundle;
 public enum FxmlView {
-//    LOGIN{
-//        @Override
-//        public String getTitle()
-//        {
-//            return getStringFromResourceBundle("login.title");
-//        }
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/login.fxml";
-//        }
-//    };
+    LOGIN{
+        @Override
+        public String getTitle()
+        {
+            return getStringFromResourceBundle("login.title");
+        }
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/login.fxml";
+        }
+    },
     SIGNUP {
         @Override
         public String getTitle() {
@@ -22,17 +22,17 @@ public enum FxmlView {
         public String getFxmlFile() {
             return "/fxml/signUp.fxml";
         }
+    },
+    MENU{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("menu.title");
+        }
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/menu.fxml";
+        }
     };
-//    MENU{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("menu.title");
-//        }
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/menu.fxml";
-//        }
-//    },
 //    NEWGOAL{
 //        @Override
 //        public String getTitle() {

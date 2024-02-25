@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <AnchorPane layoutX="388.0" layoutY="-24.0" prefHeight="447.0" prefWidth="430.0" style="-fx-background-color: #df91bb;">
+         <effect>
+            <ColorAdjust contrast="-0.04" hue="0.06" saturation="-0.11" />
+         </effect>
+         <children>
+            <ImageView fitHeight="259.0" fitWidth="336.0" layoutX="48.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img_1.png" />
+               </image>
+               <effect>
+                  <DropShadow height="30.36" radius="15.850000000000001" spread="0.59" width="35.04">
+                     <color>
+                        <Color red="0.6631578803062439" green="0.4249122738838196" blue="0.6472748517990112" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="423.0" prefWidth="392.0" style="-fx-background-color: #d754d7;">
+         <effect>
+            <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
+         </effect>
+         <TextField fx:id="usernameTextField" layoutX="132.0" layoutY="158.0 "  promptText="Username" />
+         <PasswordField fx:id="passwordTextField" layoutX="132.0" layoutY="222.0"  promptText="Password" />
+         <Label layoutX="132.0" layoutY="138.0" text="Username" textFill="#6e046c">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+         </Label>
+         <Label layoutX="128.0" layoutY="202.0" text="Password" textFill="#6e046c">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+         </Label>
+         <Label layoutX="118.0" layoutY="258.0" />
+         <Label layoutX="198.0" layoutY="362.0" prefHeight="26.0" prefWidth="74.0" text="New User?" textFill="#6e046c">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+         </Label>
+         <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="105.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" />
+         <ImageView blendMode="SRC_ATOP" fitHeight="56.0" fitWidth="83.0" layoutX="168.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@img_5.png" />
+            </image>
+            <effect>
+               <DropShadow spread="0.46">
+                  <color>
+                     <Color red="0.4736842215061188" green="0.028070176020264626" blue="0.31029239296913147" />
+                  </color>
+                  <input>
+                     <ColorAdjust hue="-0.13" saturation="-0.06" />
+                  </input>
+               </DropShadow>
+            </effect>
+         </ImageView>
+         <Label layoutX="51.0" layoutY="88.0" text="Welcome to your Goal Tracking App" textFill="#660357">
+            <font>
+               <Font name="System Bold" size="18.0" />
+            </font>
+         </Label>
+         <Button fx:id="loginButton" layoutX="130.0" layoutY="276.0" mnemonicParsing="false"  prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #700194;" text="Login" textFill="#cd7fd1">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+            <effect>
+               <InnerShadow>
+                  <color>
+                     <Color red="0.16078431904315948" green="0.007843137718737125" blue="0.1411764770746231" />
+                  </color>
+               </InnerShadow>
+            </effect>
+         </Button>
+         <Hyperlink layoutX="266.0" layoutY="362.0"  text="Sign Up" textFill="#6e046c" underline="true">
+            <font>
+               <Font name="System Bold" size="13.0" />
+            </font>
+         </Hyperlink>
+      </AnchorPane>
+   </children>
+</AnchorPane>
