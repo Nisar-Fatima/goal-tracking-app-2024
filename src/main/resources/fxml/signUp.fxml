@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane   maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.SignUpController">
     <children>
         <AnchorPane layoutY="-31.0" prefHeight="377.0" prefWidth="431.0" style="-fx-background-color: #b98da5;">
             <effect>
@@ -36,8 +36,9 @@
                 <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
             </effect>
             <children>
-                <TextField layoutX="123.0" layoutY="176.0" promptText="Email"/>
-                <PasswordField layoutX="123.0" layoutY="245.0" promptText="Password" />
+                <TextField fx:id="usernameTextField" layoutX="123.0" layoutY="109.0" onKeyTyped="#onUsernameTextFieldChanged" promptText="Username" />
+                <TextField fx:id="emailTextField" layoutX="123.0" layoutY="176.0" promptText="Email" />
+                <PasswordField fx:id="passwordTextField" layoutX="123.0" layoutY="245.0" onKeyTyped="#onPasswordTextFieldChanged" promptText="Password" />
                 <Label layoutX="123.0" layoutY="150.0" text="Email" textFill="#6e046c">
                     <font>
                         <Font name="System Bold" size="13.0" />
@@ -65,7 +66,7 @@
                         <Font name="System Bold" size="36.0" />
                     </font>
                 </Label>
-                <Button layoutX="117.0" layoutY="335.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #700194;" text="Sign Up" textFill="#cd7fd1">
+                <Button layoutX="117.0" layoutY="335.0" mnemonicParsing="false" onAction="#onSignUpButtonPressed" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #700194;" text="Sign Up" textFill="#cd7fd1">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
@@ -82,7 +83,15 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField layoutX="123.0" layoutY="109.0" promptText="Username"/>
+                <Label fx:id="passwordFeedbackLabel" layoutX="122.0" layoutY="271.0" prefHeight="19.0" prefWidth="254.0" textFill="#c30707">
+                    <font>
+                        <Font size="10.0" />
+                    </font></Label>
+                <Label fx:id="usernameFeedbacklabel" layoutX="122.0" layoutY="134.0" prefHeight="17.0" prefWidth="188.0" textFill="#c30707" />
+                <Label fx:id="passwordFeedbackLabel2" layoutX="122.0" layoutY="271.0" prefHeight="17.0" prefWidth="99.0" textFill="#286e38">
+                    <font>
+                        <Font size="11.0" />
+                    </font></Label>
 
                       <!--            <Button layoutX="126.0" layoutY="300.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Login" textFill="#cd7fd1"  style="-fx-background-color: #700194; />-->
             </children>
