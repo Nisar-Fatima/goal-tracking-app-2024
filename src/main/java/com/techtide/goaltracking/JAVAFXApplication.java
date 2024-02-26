@@ -25,7 +25,7 @@ public class JAVAFXApplication extends Application {
 
     }
     protected void displayInitialScene(){
-        stageManager.switchScene(FxmlView.MENU);
+        stageManager.switchScene(FxmlView.NEWGOAL);
 
     }
     private ConfigurableApplicationContext springBootApplicationContext(){

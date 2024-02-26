@@ -1,12 +1,12 @@
 package com.techtide.goaltracking.enums;
 import java.util.ResourceBundle;
 public enum FxmlView {
-    LOGIN{
+    LOGIN {
         @Override
-        public String getTitle()
-        {
+        public String getTitle() {
             return getStringFromResourceBundle("login.title");
         }
+
         @Override
         public String getFxmlFile() {
             return "/fxml/login.fxml";
@@ -23,27 +23,28 @@ public enum FxmlView {
             return "/fxml/signUp.fxml";
         }
     },
-    MENU{
+    MENU {
         @Override
         public String getTitle() {
             return getStringFromResourceBundle("menu.title");
         }
+
         @Override
         public String getFxmlFile() {
             return "/fxml/menu.fxml";
         }
+    },
+    NEWGOAL {
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("newGoal.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/newGoalPage.fxml";
+        }
     };
-//    NEWGOAL{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("newGoalPage.title");
-//        }
-//
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/newGoalPage.fxml";
-//        }
-//    },
 //    CURRENTGOAL{
 //        @Override
 //        public String getTitle() {
@@ -55,7 +56,7 @@ public enum FxmlView {
 //            return "/fxml/currentGoalPage.fxml";
 //        }
 //    },
-    //    STOPWATCH{
+        //    STOPWATCH{
 //        @Override
 //        public String getTitle() {
 //            return getStringFromResourceBundle("stopWatch.title");
@@ -109,10 +110,13 @@ public enum FxmlView {
 //            return "/fxml/contactUs.fxml";
 //        }
 //    };
-    static String getStringFromResourceBundle(final String key){
-        return ResourceBundle.getBundle("Bundle").getString(key);
-    }
-    public abstract String getTitle();
-    public abstract String getFxmlFile();
+        static String getStringFromResourceBundle(final String key) {
+            return ResourceBundle.getBundle("Bundle").getString(key);
+        }
 
-}
+        public abstract String getTitle();
+
+        public abstract String getFxmlFile();
+
+    }
+
