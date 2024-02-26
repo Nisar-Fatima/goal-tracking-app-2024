@@ -3,6 +3,8 @@ import com.techtide.goaltracking.entity.SignUpEntity;
 import com.techtide.goaltracking.repository.SignUpRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class SignUpServiceImpl implements SignUpService {
@@ -22,5 +24,13 @@ public class SignUpServiceImpl implements SignUpService {
         return signUpRepo.existsByEmail(email);
     }
 
-
+    @Override
+    public boolean validateLogin(String username, String password) {
+        Optional<SignUpEntity> userOpt = signUpRepo.findByUsername(username);
+        if (userOpt.isPresent()) {
+            SignUpEntity user = userOpt.get();
+            return user.getPassword().equals(password);
+        }
+            return false;
+    }
 }
