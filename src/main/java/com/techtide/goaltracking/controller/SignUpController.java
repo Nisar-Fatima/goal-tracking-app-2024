@@ -103,7 +103,7 @@ public class SignUpController implements Initializable {
             entity.setPassword(password);
             signUpService.save(entity);
             FXUtils.showMessage(Alert.AlertType.INFORMATION, "SignUp Successfully");
-            stageManager.switchScene(FxmlView.SIGNUP);
+            stageManager.switchScene(FxmlView.MENU);
         } catch (Exception e) {
             FXUtils.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
