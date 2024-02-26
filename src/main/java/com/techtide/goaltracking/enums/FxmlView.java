@@ -44,18 +44,18 @@ public enum FxmlView {
         public String getFxmlFile() {
             return "/fxml/newGoalPage.fxml";
         }
+    },
+    CURRENTGOAL{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("currentGoal.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/currentGoalPage.fxml";
+        }
     };
-//    CURRENTGOAL{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("currentGoalPage.title");
-//        }
-//
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/currentGoalPage.fxml";
-//        }
-//    },
         //    STOPWATCH{
 //        @Override
 //        public String getTitle() {
