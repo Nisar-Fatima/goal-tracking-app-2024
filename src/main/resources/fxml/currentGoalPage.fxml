@@ -16,7 +16,7 @@
             <effect>
                 <DropShadow>
                     <input>
-                        <ColorAdjust brightness="-0.04" contrast="-0.3" hue="-0.06" />
+                        <ColorAdjust brightness="-0.04" contrast="-0.3" hue="-0.06" saturation="-0.19" />
                     </input>
                 </DropShadow>
             </effect>
