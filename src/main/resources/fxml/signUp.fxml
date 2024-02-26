@@ -36,6 +36,7 @@
                 <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
             </effect>
             <children>
+                <TextField fx:id="usernameTextField" layoutX="123.0" layoutY="109.0" onKeyTyped="#onUsernameTextFieldChanged" promptText="Username" />
                 <TextField fx:id="emailTextField" layoutX="123.0" layoutY="176.0" promptText="Email" />
                 <PasswordField fx:id="passwordTextField" layoutX="123.0" layoutY="245.0" onKeyTyped="#onPasswordTextFieldChanged" promptText="Password" />
                 <Label layoutX="123.0" layoutY="150.0" text="Email" textFill="#6e046c">
@@ -82,7 +83,6 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameTextField" layoutX="123.0" layoutY="109.0" onKeyTyped="#onUsernameTextFieldChanged" promptText="Username" />
                 <Label fx:id="passwordFeedbackLabel" layoutX="122.0" layoutY="271.0" prefHeight="19.0" prefWidth="254.0" textFill="#c30707">
                     <font>
                         <Font size="10.0" />

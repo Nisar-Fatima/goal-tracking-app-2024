@@ -85,7 +85,18 @@ public class SignUpController implements Initializable {
             String username = usernameTextField.getText();
             String email = emailTextField.getText();
             String password = passwordTextField.getText();
-            signUpService.validateSignUpData(username, email, password);
+            if (username.isBlank() || email.isBlank() || password.isBlank()) {
+                FXUtils.showMessage(Alert.AlertType.ERROR, "Must enter all information..");
+                return;
+            }
+            if (signUpService.existsByUsername(username)) {
+                FXUtils.showMessage(Alert.AlertType.ERROR, "Username already exists");
+                return;
+            }
+            if (!isValidEmail(email) || signUpService.existsByEmail(email)) {
+                FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid email or email already exist.");
+                return;
+            }
             final SignUpEntity entity = new SignUpEntity();
             entity.setUsername(username);
             entity.setEmail(email);
@@ -96,5 +107,8 @@ public class SignUpController implements Initializable {
         } catch (Exception e) {
             FXUtils.showMessage(Alert.AlertType.ERROR, e.getMessage());
         }
+    }
+    private boolean isValidEmail(String email) {
+        return email.matches("[a-zA-Z0-9._%+-]+@gmail\\.com");
     }
 }

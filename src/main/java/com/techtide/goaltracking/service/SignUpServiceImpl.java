@@ -22,20 +22,5 @@ public class SignUpServiceImpl implements SignUpService {
         return signUpRepo.existsByEmail(email);
     }
 
-    @Override
-    public void validateSignUpData(String username, String email, String password) throws IllegalArgumentException {
-        if (username.isBlank() || email.isBlank() || password.isBlank()) {
-            throw new IllegalArgumentException("Must enter all information.");
-        }
-        if (existsByUsername(username)) {
-            throw new IllegalArgumentException("Username already exists.");
-        }
-        if (!isValidEmail(email) || existsByEmail(email)) {
-            throw new IllegalArgumentException("Invalid email.");
-        }
-    }
 
-    private boolean isValidEmail(String email) {
-        return email.matches("[a-zA-Z0-9._%+-]+@gmail\\.com");
-    }
 }

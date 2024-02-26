@@ -4,5 +4,4 @@ public interface SignUpService {
     SignUpEntity save(SignUpEntity entity);
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
-    void validateSignUpData(String username, String email, String password);
 }
