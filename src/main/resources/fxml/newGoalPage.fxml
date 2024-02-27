@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane  fx:controller="com.techtide.goaltracking.controller.NewGoalController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="494.0" fitWidth="737.0" layoutX="-3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,11 +26,11 @@
             <Font name="Showcard Gothic" size="37.0" />
          </font>
       </Label>
-      <TextField layoutX="322.0" layoutY="98.0" prefHeight="30.0" prefWidth="274.0" promptText="Name" />
-      <TextField layoutX="322.0" layoutY="151.0" prefHeight="30.0" prefWidth="274.0" promptText="Goal" />
-      <DatePicker layoutX="322.0" layoutY="201.0" prefHeight="30.0" prefWidth="274.0" promptText="Start Date" />
-      <DatePicker layoutX="322.0" layoutY="255.0" prefHeight="30.0" prefWidth="274.0" promptText="End Date" />
-      <Button accessibleRole="HYPERLINK" layoutX="617.0" layoutY="407.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="98.0" style="-fx-background-color: 10040115;" text="Save" textFill="#5b053c" underline="true">
+      <TextField  fx:id="nameTextField" layoutX="322.0" layoutY="98.0" prefHeight="30.0" prefWidth="274.0" promptText="Name" />
+      <TextField fx:id="goalTextField" layoutX="322.0" layoutY="151.0" prefHeight="30.0" prefWidth="274.0" promptText="Goal" />
+      <DatePicker fx:id="startDateTextField" layoutX="322.0" layoutY="201.0" prefHeight="30.0" prefWidth="274.0" promptText="Start Date" />
+      <DatePicker fx:id="endDateTextField" layoutX="322.0" layoutY="255.0" prefHeight="30.0" prefWidth="274.0" promptText="End Date" />
+      <Button onAction="#onSaveButtonPressed" accessibleRole="HYPERLINK" layoutX="617.0" layoutY="407.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="98.0" style="-fx-background-color: 10040115;" text="Save" textFill="#5b053c" underline="true">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
@@ -42,7 +42,7 @@
             </InnerShadow>
          </effect>
       </Button>
-      <Button accessibleRole="HYPERLINK" layoutX="596.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: 10040115;" text="Delete" textFill="#5b053c" underline="true">
+      <Button onAction="#onDeleteButtonPressed" accessibleRole="HYPERLINK" layoutX="596.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="62.0" style="-fx-background-color: 10040115;" text="Delete" textFill="#5b053c" underline="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -92,9 +92,9 @@
                <Font name="Showcard Gothic" size="20.0" />
             </font>
          </Label>
-         <ChoiceBox prefHeight="26.0" prefWidth="274.0" />
+         <ChoiceBox fx:id="deleteChoiceBox" prefHeight="26.0" prefWidth="274.0" />
       </StackPane>
-      <Button accessibleRole="HYPERLINK" layoutX="596.0" layoutY="321.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: 10040115;" text="Update" textFill="#5b053c" underline="true">
+      <Button onAction="#onUpdateConfirmButtonPressed" accessibleRole="HYPERLINK" layoutX="596.0" layoutY="321.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: 10040115;" text="Update" textFill="#5b053c" underline="true">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
