@@ -34,30 +34,31 @@
                 <Font name="Showcard Gothic" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="53.0" layoutY="234.0" prefHeight="50.0" prefWidth="125.0" text="Select Goal" textFill="#5b053c">
+        <Label layoutX="2.0" layoutY="234.0" prefHeight="50.0" prefWidth="217.0" text="Your Current Goals" textFill="#5b053c">
+            <font>
+                <Font name="Showcard Gothic" size="19.0" />
+            </font>
+        </Label>
+        <Label layoutX="83.0" layoutY="181.0" prefHeight="50.0" prefWidth="98.0" text="Date" textFill="#5b053c">
             <font>
                 <Font name="Showcard Gothic" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="91.0" layoutY="181.0" prefHeight="50.0" prefWidth="98.0" text="Date" textFill="#5b053c">
-            <font>
-                <Font name="Showcard Gothic" size="20.0" />
-            </font>
-        </Label>
-      <DatePicker layoutX="211.0" layoutY="193.0" prefHeight="26.0" prefWidth="225.0" />
-      <Spinner layoutX="211.0" layoutY="141.0" prefHeight="26.0" prefWidth="114.0" />
-      <Spinner layoutX="323.0" layoutY="141.0" prefHeight="26.0" prefWidth="114.0" />
-      <Label layoutX="316.0" layoutY="116.0" prefHeight="26.0" prefWidth="98.0" text="Minutes" textFill="#5b053c">
+      <DatePicker layoutX="232.0" layoutY="193.0" prefHeight="26.0" prefWidth="225.0" />
+        <Spinner editable="true" initialValue="0" layoutX="351.0" layoutY="141.0" max="59" min="0" prefHeight="26.0" prefWidth="106.0" />
+        <Spinner editable="true" initialValue="0" layoutX="232.0" layoutY="141.0" max="24" min="0" prefHeight="26.0" prefWidth="114.0" />
+
+        <Label layoutX="355.0" layoutY="115.0" prefHeight="26.0" prefWidth="98.0" text="Minutes" textFill="#5b053c">
          <font>
-            <Font name="Sitka Text" size="14.0" />
+            <Font name="Sitka Small Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="210.0" layoutY="120.0" prefHeight="14.0" prefWidth="98.0" text="Hours" textFill="#5b053c">
+      <Label layoutX="232.0" layoutY="120.0" prefHeight="14.0" prefWidth="98.0" text="Hours" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold" size="14.0" />
          </font>
       </Label>
-      <ChoiceBox layoutX="210.0" layoutY="246.0" prefHeight="26.0" prefWidth="226.0" />
+      <ChoiceBox layoutX="232.0" layoutY="246.0" prefHeight="26.0" prefWidth="226.0" />
       <Label layoutX="554.0" layoutY="168.0" prefHeight="50.0" prefWidth="106.0" text="Task List" textFill="#5b053c">
          <font>
             <Font name="Showcard Gothic" size="20.0" />
