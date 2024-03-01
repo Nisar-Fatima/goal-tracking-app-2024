@@ -55,7 +55,7 @@ public enum FxmlView {
         public String getFxmlFile() {
             return "/fxml/currentGoalPage.fxml";
         }
-    };
+    },
         //    STOPWATCH{
 //        @Override
 //        public String getTitle() {
@@ -89,17 +89,17 @@ public enum FxmlView {
 //            return "/fxml/spreadsheet.fxml";
 //        }
 //    },
-//    TASK{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("task.title");
-//        }
-//
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/task.fxml";
-//        }
-//    },
+    TASK{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("task.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/task.fxml";
+        }
+    };
 //    CONTACTUS{
 //        @Override
 //        public String getTitle() {
