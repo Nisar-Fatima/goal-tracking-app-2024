@@ -14,8 +14,8 @@ public class NewGoalServiceImpl implements NewGoalService {
 
     private final NewGoalRepo newGoalRepository;
     @Override
-    public NewGoalEntity saveGoal(NewGoalEntity entity) {
-        return newGoalRepository.save(entity);
+    public NewGoalEntity save(NewGoalEntity entity) {
+        return newGoalRepository.saveAndFlush(entity);
     }
     @Override
     public List<NewGoalEntity> getAllGoals() {
@@ -27,14 +27,13 @@ public class NewGoalServiceImpl implements NewGoalService {
         newGoalRepository.deleteByGoal(goal);
     }
     @Override
-    public NewGoalEntity getGoalByName(String selectedGoal) {
+    public NewGoalEntity getGoalByGoalName(String selectedGoal) {
         return newGoalRepository.findByGoal(selectedGoal);
     }
     @Override
     public void updateGoal(NewGoalEntity goalEntity) {
-            newGoalRepository.save(goalEntity);
+            newGoalRepository.saveAndFlush(goalEntity);
         }
-
     }
 
 

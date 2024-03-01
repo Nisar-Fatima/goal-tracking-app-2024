@@ -33,6 +33,8 @@ public class NewGoalController implements Initializable {
     @FXML
     private ChoiceBox<String> deleteChoiceBox;
 
+
+
     public NewGoalController(@Lazy StageManager stageManager, NewGoalService newGoalService) {
         this.stageManager = stageManager;
         this.newGoalService = newGoalService;
@@ -41,8 +43,10 @@ public class NewGoalController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadGoals();
+        startDateTextField.getEditor().setDisable(true);
+        endDateTextField.getEditor().setDisable(true);
 
+        loadGoals();
         startDateTextField.setDayCellFactory(picker -> new DateCell() {
             @Override
             public void updateItem(LocalDate date, boolean empty) {
@@ -63,7 +67,7 @@ public class NewGoalController implements Initializable {
 
         deleteChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                NewGoalEntity selectedGoal = newGoalService.getGoalByName(newValue);
+                NewGoalEntity selectedGoal = newGoalService.getGoalByGoalName(newValue);
 
                 nameTextField.setText(selectedGoal.getName());
                 goalTextField.setText(selectedGoal.getGoal());
@@ -93,7 +97,7 @@ public class NewGoalController implements Initializable {
         }
 
         try {
-            NewGoalEntity goalEntity = newGoalService.getGoalByName(selectedGoal);
+            NewGoalEntity goalEntity = newGoalService.getGoalByGoalName(selectedGoal);
 
             String currentName = goalEntity.getName();
             String currentGoal = goalEntity.getGoal();
@@ -119,8 +123,8 @@ public class NewGoalController implements Initializable {
                 return;
             }
 
-            if (!selectedGoal.equals(newName)) {
-                NewGoalEntity existingGoal = newGoalService.getGoalByName(newName);
+            if (!selectedGoal.equals(newGoal)) {
+                NewGoalEntity existingGoal = newGoalService.getGoalByGoalName(newGoal);
                 if (existingGoal != null) {
                     FXUtils.showMessage(Alert.AlertType.ERROR, "Goal name already exists. Please choose a different name.");
                     return;
@@ -129,6 +133,10 @@ public class NewGoalController implements Initializable {
 
             if (newEndDate.isBefore(newStartDate)) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "End date must be after or equal to start date");
+                return;
+            }
+            if (isNameAlreadyExists(newGoal)) {
+                FXUtils.showMessage(Alert.AlertType.ERROR, "Goal name already exists. Please choose a different name.");
                 return;
             }
 
@@ -196,6 +204,10 @@ public class NewGoalController implements Initializable {
             FXUtils.showMessage(Alert.AlertType.ERROR, "End date must be after or equal to start date");
             return;
         }
+        if (isNameAlreadyExists(goal)) {
+            FXUtils.showMessage(Alert.AlertType.ERROR, "Goal name already exists. Please choose a different name.");
+            return;
+        }
 
         try {
             NewGoalEntity entity = new NewGoalEntity();
@@ -204,7 +216,7 @@ public class NewGoalController implements Initializable {
             entity.setStartDate(startDate);
             entity.setEndDate(endDate);
 
-            newGoalService.saveGoal(entity);
+            newGoalService.save(entity);
 
             nameTextField.clear();
             goalTextField.clear();
@@ -227,7 +239,7 @@ public class NewGoalController implements Initializable {
         String newNameLowerCase = name.toLowerCase();
         List<NewGoalEntity> goals = newGoalService.getAllGoals();
         for (NewGoalEntity existingGoal : goals) {
-            if (existingGoal.getName().toLowerCase().equals(newNameLowerCase)) {
+            if (existingGoal.getGoal().toLowerCase().equals(newNameLowerCase)) {
                 return true;
             }
         }

@@ -73,7 +73,7 @@
             <Font name="Showcard Gothic" size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView  onMouseClicked="#onBackIconClicked" fitHeight="30.0" fitWidth="27.0" layoutX="1.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img_51.png" />
          </image>
