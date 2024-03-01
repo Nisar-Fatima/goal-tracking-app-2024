@@ -34,7 +34,7 @@
                 <Font name="Showcard Gothic" size="20.0" />
             </font>
         </Label>
-        <Label layoutX="2.0" layoutY="234.0" prefHeight="50.0" prefWidth="217.0" text="Your Current Goals" textFill="#5b053c">
+        <Label layoutX="14.0" layoutY="234.0" prefHeight="50.0" prefWidth="217.0" text="Your Current Goals" textFill="#5b053c">
             <font>
                 <Font name="Showcard Gothic" size="19.0" />
             </font>
