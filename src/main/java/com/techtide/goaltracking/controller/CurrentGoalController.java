@@ -1,18 +1,20 @@
 package com.techtide.goaltracking.controller;
-
 import com.techtide.goaltracking.config.StageManager;
+import com.techtide.goaltracking.entity.CurrentGoalEntity;
 import com.techtide.goaltracking.entity.NewGoalEntity;
 import com.techtide.goaltracking.enums.FxmlView;
+import com.techtide.goaltracking.service.CurrentGoalService;
 import com.techtide.goaltracking.service.NewGoalService;
 import com.techtide.goaltracking.util.FXUtils;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.converter.IntegerStringConverter;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
-
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +22,11 @@ import java.util.ResourceBundle;
 @Controller
 public class CurrentGoalController implements Initializable {
     private final NewGoalService newGoalService;
+    private final CurrentGoalService currentGoalService;
     private final StageManager stageManager;
+
     @FXML
     private Spinner<Integer> hoursSpinner;
-
     @FXML
     private Spinner<Integer> minutesSpinner;
 
@@ -32,9 +35,11 @@ public class CurrentGoalController implements Initializable {
     @FXML
     private DatePicker datePicker;
     private boolean isErrorMessageShown = false;
+    private boolean dataSaved = false;
 
-    public CurrentGoalController(NewGoalService newGoalService, @Lazy StageManager stageManager) {
+    public CurrentGoalController(NewGoalService newGoalService, CurrentGoalService currentGoalService, @Lazy StageManager stageManager) {
         this.newGoalService = newGoalService;
+        this.currentGoalService = currentGoalService;
         this.stageManager = stageManager;
     }
     @Override
@@ -43,29 +48,31 @@ public class CurrentGoalController implements Initializable {
         goalChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 onGoalSelected(newVal);
+                resetData();
             }
         });
-        hoursSpinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                Integer enteredValue = hoursSpinner.getValue();
-                if (enteredValue < 0 || enteredValue > 23) {
-                    FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter a value between 0 and 23.");
-                    hoursSpinner.getValueFactory().setValue(Math.min(Math.max(enteredValue, 0), 23));
-                }
+        TextFormatter<Integer> hoursFormatter = createIntegerTextFormatter(0);
+        hoursSpinner.getEditor().setTextFormatter(hoursFormatter);
+        hoursSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int enteredValue = newValue;
+            if (enteredValue < 0 || enteredValue > 24) {
+                FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter value between 0 and 24.");
+                hoursSpinner.getValueFactory().setValue(24);
             }
         });
-        minutesSpinner.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                Integer enteredValue = minutesSpinner.getValue();
-                if (enteredValue < 0 || enteredValue > 59) {
-                    FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for minutes. Please enter a value between 0 and 59..");
-                    minutesSpinner.getValueFactory().setValue(Math.min(Math.max(enteredValue, 0), 59));
-                }
+
+        TextFormatter<Integer> minutesFormatter = createIntegerTextFormatter(0);
+        minutesSpinner.getEditor().setTextFormatter(minutesFormatter);
+        minutesSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int enteredValue = newValue;
+            if (enteredValue < 0 || enteredValue > 59) {
+                FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for minutes. Please enter value between 0 and 59.");
+                minutesSpinner.getValueFactory().setValue(59);
             }
         });
         datePicker.getEditor().setDisable(true);
         datePicker.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (goalChoiceBox.getSelectionModel().getSelectedItem() == null && !isErrorMessageShown) {
+            if (goalChoiceBox.getSelectionModel().getSelectedItem() == null && newValue != null && !isErrorMessageShown) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Please select a goal before setting a date.");
                 isErrorMessageShown = true;
                 datePicker.setValue(null);
@@ -73,6 +80,29 @@ public class CurrentGoalController implements Initializable {
                 isErrorMessageShown = false;
             }
         });
+    }
+    private TextFormatter<Integer> createIntegerTextFormatter(int defaultValue) {
+        return new TextFormatter<>(
+                new IntegerStringConverter(),
+                defaultValue,
+                change -> {
+                    String newText = change.getControlNewText();
+                    if (newText.isEmpty()) {
+                        // Treat an empty text as the default value
+                        change.setText(Integer.toString(defaultValue));
+                        return change;
+                    }
+                    if (newText.matches("-?\\d*")) {
+                        return change;
+                    }
+                    return null;
+                }
+        );
+    }
+    private void resetData() {
+        datePicker.setValue(null);
+        hoursSpinner.getValueFactory().setValue(0);
+        minutesSpinner.getValueFactory().setValue(0);
     }
     private void onGoalSelected(String goalName) {
         NewGoalEntity selectedGoal = newGoalService.getGoalByGoalName(goalName);
@@ -90,7 +120,6 @@ public class CurrentGoalController implements Initializable {
                 setDisable(empty || date.isBefore(startDate) || date.isAfter(endDate));
             }
         });
-        datePicker.getEditor().setDisable(true);
     }
     private List<String> getUncompletedGoals() {
         List<String> goalNames = new ArrayList<>();
@@ -103,17 +132,65 @@ public class CurrentGoalController implements Initializable {
         }
         return goalNames;
     }
-
     private List<NewGoalEntity> findAll() {
         return newGoalService.getAllGoals();
     }
+    public void onSaveButtonPressed() {
+        try {
+            String selectedGoal = goalChoiceBox.getValue();
+            int hours = hoursSpinner.getValue();
+            int minutes = minutesSpinner.getValue();
+            LocalDate date = datePicker.getValue();
+
+            if (selectedGoal == null || selectedGoal.isEmpty() || date == null) {
+                FXUtils.showMessage(Alert.AlertType.WARNING, "Please select a goal  and enter a valid date.");
+                return;
+            }
+            if (hours == 0 && minutes == 0) {
+                FXUtils.showMessage(Alert.AlertType.WARNING, "Please enter a valid time spent.");
+                return;
+            }
+            if (hours == 24 && minutes > 0) {
+                FXUtils.showMessage(Alert.AlertType.WARNING, "The total hours in a day cannot exceed 24.");
+                return;
+            }
+            final NewGoalEntity newGoalEntity = newGoalService.getGoalByGoalName(selectedGoal);
+            if (newGoalEntity != null) {
+                CurrentGoalEntity currentGoalEntity = new CurrentGoalEntity();
+                currentGoalEntity.setGoal(selectedGoal);
+                currentGoalEntity.setDate(date);
+                currentGoalEntity.setTimeSpent(Duration.ofHours(hours).plusMinutes(minutes));
+                currentGoalEntity.setNewGoal(newGoalEntity);
+                currentGoalEntity.setName(newGoalEntity.getName());
+                currentGoalEntity.setStartDate(newGoalEntity.getStartDate());
+                currentGoalEntity.setEndDate(newGoalEntity.getEndDate());
+                currentGoalService.save(currentGoalEntity);
+                FXUtils.showMessage(Alert.AlertType.INFORMATION, "Goal details saved successfully");
+                dataSaved = true;
+                resetFields();
+            }
+        }catch(Exception e){
+            FXUtils.showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
+    }
+    @FXML
+    private void resetFields() {
+        goalChoiceBox.getSelectionModel().clearSelection();
+        hoursSpinner.getValueFactory().setValue(0);
+        minutesSpinner.getValueFactory().setValue(0);
+        datePicker.setValue(null);
+    }
+
     @FXML
     public void onTaskListpressed()  {
-        stageManager.switchScene(FxmlView.TASK);
+        if (!dataSaved) {
+            FXUtils.showMessage(Alert.AlertType.ERROR, "Please save your current goal before switching to the Task page.");
+        } else {
+            stageManager.switchScene(FxmlView.TASK);
+        }
     }
     @FXML
     public void onBackIconPressed()  {
         stageManager.switchScene(FxmlView.MENU);
     }
-
 }

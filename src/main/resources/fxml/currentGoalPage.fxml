@@ -39,6 +39,10 @@
                 <Font name="Showcard Gothic" size="19.0" />
             </font>
         </Label>
+        <Button layoutX="240.0" layoutY="316.0" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefHeight="27.0" prefWidth="121.0" text="Save" textFill="#5b053c">
+            <font>
+                <Font name="Sitka Banner Bold" size="14.0" />
+            </font></Button>
         <Label layoutX="83.0" layoutY="181.0" prefHeight="50.0" prefWidth="98.0" text="Date" textFill="#5b053c">
             <font>
                 <Font name="Showcard Gothic" size="20.0" />

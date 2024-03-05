@@ -27,7 +27,7 @@ import java.util.List;
         @Column(name = "end_date")
         private LocalDate endDate;
 
-    @OneToMany(mappedBy = "newgoal", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "newGoal", cascade = CascadeType.ALL)
     private List<CurrentGoalEntity> currentGoals;
 
 
