@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: D754D7FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="737.0" style="-fx-background-color: D754D7FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">-->
+   <children>
+      <ChoiceBox layoutX="287.0" layoutY="121.0" prefHeight="26.0" prefWidth="242.0" />
+      <ChoiceBox layoutX="288.0" layoutY="41.0" prefHeight="26.0" prefWidth="242.0" />
+      <Label layoutX="288.0" layoutY="14.0" text="Select Goal" textFill="#660357">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <AnchorPane layoutX="-1.0" layoutY="198.0" prefHeight="323.0" prefWidth="819.0" style="-fx-background-color: DF91BBFF;">
+         <children>
+            <TableView prefHeight="408.0" prefWidth="819.0" style="-fx-background-color: DF91BBFF DF91BBFF;">
+               <columns>
+                  <TableColumn prefWidth="75.0" style="-fx-border-color: #0a7084;" text="Name" />
+                  <TableColumn prefWidth="96.79999542236328" style="-fx-border-color: #0a7084; " text="Goal" />
+                  <TableColumn minWidth="0.0" prefWidth="107.20004272460938" style="-fx-border-color: #0a7084; " text="StartDate" />
+                  <TableColumn prefWidth="100.800048828125" style="-fx-border-color: #0a7084; " text="EndDate" />
+                  <TableColumn prefWidth="92.79998779296875" style="-fx-border-color: #0a7084; " text="TaskDate" />
+                  <TableColumn prefWidth="90.39999389648438" style="-fx-border-color: #0a7084; " text="HoursSpent" />
+                  <TableColumn prefWidth="111.20001220703125" style="-fx-border-color: #0a7084; " text="TotalHoursSpent" />
+                  <TableColumn minWidth="4.0" prefWidth="141.60002441406255" style="-fx-border-color: #0a7084; " text="TaskList" />
+               </columns>
+            </TableView>
+         </children></AnchorPane>
+      <Label layoutX="287.0" layoutY="94.0" text="Select Record Type" textFill="#660357">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
