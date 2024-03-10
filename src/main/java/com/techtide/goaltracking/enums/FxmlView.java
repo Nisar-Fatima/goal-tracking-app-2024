@@ -56,17 +56,17 @@ public enum FxmlView {
             return "/fxml/currentGoalPage.fxml";
         }
     },
-        //    STOPWATCH{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("stopWatch.title");
-//        }
-//
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/stopWatch.fxml";
-//        }
-//    },
+    STOPWATCH{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("stopWatch.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/stopWatch.fxml";
+        }
+    },
     RECORDS{
         @Override
         public String getTitle() {
@@ -77,18 +77,19 @@ public enum FxmlView {
         public String getFxmlFile() {
             return "/fxml/record.fxml";
         }
-    };
-//    SPREADSHEET{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("spreadsheet.title");
-//        }
-//
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/spreadsheet.fxml";
-//        }
-//    },
+    },
+    //
+    SPREADSHEET{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("spreadsheet.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/spreadsheet.fxml";
+        }
+    },
     TASK{
         @Override
         public String getTitle() {
@@ -110,13 +111,12 @@ public enum FxmlView {
 //            return "/fxml/contactUs.fxml";
 //        }
 //    };
-        static String getStringFromResourceBundle(final String key) {
-            return ResourceBundle.getBundle("Bundle").getString(key);
-        }
 
-        public abstract String getTitle();
-
-        public abstract String getFxmlFile();
+    static String getStringFromResourceBundle(final String key){
+        return ResourceBundle.getBundle("Bundle").getString(key);
+    }
+    public abstract String getTitle();
+    public abstract String getFxmlFile();
 
     }
 
