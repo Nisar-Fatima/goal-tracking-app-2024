@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: D754D7FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+
+<!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="799.0" style="-fx-background-color: D754D7FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">-->
+   <children>
+      <ChoiceBox layoutX="287.0" layoutY="119.0" prefHeight="26.0" prefWidth="242.0" />
+      <Label layoutX="361.0" layoutY="91.0" text="Select Goal" textFill="#660357">
+
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <AnchorPane layoutX="-2.0" layoutY="202.0" prefHeight="358.0" prefWidth="799.0" style="-fx-background-color: DF91BBFF;">
+         <children>
+            <TableView prefHeight="358.0" prefWidth="819.0" style="-fx-background-color: DF91BBFF DF91BBFF;">
+               <columns>
+                  <TableColumn prefWidth="71.20001375675201" style="-fx-border-color: #5b053c;" text="Name" />
+                  <TableColumn prefWidth="83.99996185302734" style="-fx-border-color: #5b053c;" text="Goal" />
+                  <TableColumn minWidth="0.0" prefWidth="85.59991455078125" style="-fx-border-color: #5b053c;" text="StartDate" />
+                  <TableColumn prefWidth="84.800048828125" style="-fx-border-color: #5b053c;" text="EndDate" />
+                  <TableColumn prefWidth="78.4000244140625" style="-fx-border-color: #5b053c;" text="CurrentDate" />
+                  <TableColumn prefWidth="81.5999755859375" style="-fx-border-color: #5b053c;" text="TimeSpent" />
+                  <TableColumn prefWidth="83.19992065429688" style="-fx-border-color: #5b053c;" text="TotalDays" />
+                  <TableColumn minWidth="4.0" prefWidth="96.7999267578125" style="-fx-border-color: #5b053c;" text="TotalTimeSpent" />
+                  <TableColumn minWidth="4.0" prefWidth="150.4000122070313" style="-fx-border-color: #5b053c;" text="TaskList" />
+               </columns>
+            </TableView>
+         </children></AnchorPane>
+      <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img_51.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="1.0" contrast="-1.0" hue="-1.0" />
+         </effect>
+      </ImageView>
+      <Label layoutX="332.0" layoutY="1.0" prefHeight="74.0" prefWidth="152.0" text="REcord" textFill="#5b053c">
+         <font>
+            <Font name="Showcard Gothic" size="37.0" />
+         </font>
+      </Label>
+
+   </children>
+</AnchorPane>

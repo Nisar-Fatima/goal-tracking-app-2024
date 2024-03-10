@@ -25,9 +25,9 @@ public class MenuController implements Initializable {
     public void onCurrentGoalMenuItemSelected() throws Exception {
         stageManager.switchScene(FxmlView.CURRENTGOAL);
     }
-//        @FXML
-//    public void onRecordsMenuItemSelected() throws Exception {
-//        stageManager.switchScene(FxmlView.RECORDS);    }
+        @FXML
+    public void onRecordsMenuItemSelected() throws Exception {
+        stageManager.switchScene(FxmlView.RECORDS);    }
 //  @FXML
 //  public void onStopWatchMenuItemSelected() throws Exception {
 //        stageManager.switchScene(FxmlView.STOPWATCH);

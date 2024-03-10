@@ -67,17 +67,17 @@ public enum FxmlView {
 //            return "/fxml/stopWatch.fxml";
 //        }
 //    },
-//    RECORDS{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("record.title");
-//        }
-//
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/record.fxml";
-//        }
-//    },
+    RECORDS{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("record.title");
+        }
+
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/record.fxml";
+        }
+    };
 //    SPREADSHEET{
 //        @Override
 //        public String getTitle() {
