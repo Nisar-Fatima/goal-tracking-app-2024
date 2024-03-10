@@ -12,24 +12,15 @@ public class CurrentGoalEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "goal")
-    private String goal;
+    @Column(name = "current_goal")
+    private String currentGoal;
 
     @Column(name = "date")
     private LocalDate date;
 
-
     @Column(name = "time_spent")
     private Duration timeSpent;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "start_date")
-    private LocalDate startDate;
-
-    @Column(name = "end_date")
-    private LocalDate endDate;
 
     @ManyToOne
     private NewGoalEntity newGoal;
