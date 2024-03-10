@@ -51,7 +51,7 @@
       </ImageView>
       <Label layoutX="44.0" layoutY="382.0" text="aroobaasisf98@gmail.com" textFill="#c645bd" />
       <Label layoutX="44.0" layoutY="400.0" text="ahtashamjutt716@gmail.com" textFill="#c645bd" />
-      <Label layoutX="277.0" layoutY="382.0" text="+92-332-626-2855" textFill="#c645bd" />
+      <Label layoutX="277.0" layoutY="382.0" text="+92-322-626-2855" textFill="#c645bd" />
       <Label layoutX="278.0" layoutY="397.0" text="+92-318-766-3024" textFill="#c645bd" />
    </children>
 </AnchorPane>
