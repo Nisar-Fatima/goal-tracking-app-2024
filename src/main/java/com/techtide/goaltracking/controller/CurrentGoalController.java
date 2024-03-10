@@ -88,7 +88,6 @@ public class CurrentGoalController implements Initializable {
                 change -> {
                     String newText = change.getControlNewText();
                     if (newText.isEmpty()) {
-                        // Treat an empty text as the default value
                         change.setText(Integer.toString(defaultValue));
                         return change;
                     }
@@ -146,8 +145,8 @@ public class CurrentGoalController implements Initializable {
                 FXUtils.showMessage(Alert.AlertType.WARNING, "Please select a goal  and enter a valid date.");
                 return;
             }
-            if (hours == 0 && minutes == 0) {
-                FXUtils.showMessage(Alert.AlertType.WARNING, "Please enter a valid time spent.");
+            if (currentGoalService.existsEntry(selectedGoal, date)) {
+                FXUtils.showMessage(Alert.AlertType.WARNING, "An entry already exists.Please choose different date ");
                 return;
             }
             if (hours == 24 && minutes > 0) {
@@ -157,13 +156,10 @@ public class CurrentGoalController implements Initializable {
             final NewGoalEntity newGoalEntity = newGoalService.getGoalByGoalName(selectedGoal);
             if (newGoalEntity != null) {
                 CurrentGoalEntity currentGoalEntity = new CurrentGoalEntity();
-                currentGoalEntity.setGoal(selectedGoal);
+                currentGoalEntity.setNewGoal(newGoalEntity);
+                currentGoalEntity.setCurrentGoal(selectedGoal);
                 currentGoalEntity.setDate(date);
                 currentGoalEntity.setTimeSpent(Duration.ofHours(hours).plusMinutes(minutes));
-                currentGoalEntity.setNewGoal(newGoalEntity);
-                currentGoalEntity.setName(newGoalEntity.getName());
-                currentGoalEntity.setStartDate(newGoalEntity.getStartDate());
-                currentGoalEntity.setEndDate(newGoalEntity.getEndDate());
                 currentGoalService.save(currentGoalEntity);
                 FXUtils.showMessage(Alert.AlertType.INFORMATION, "Goal details saved successfully");
                 dataSaved = true;
