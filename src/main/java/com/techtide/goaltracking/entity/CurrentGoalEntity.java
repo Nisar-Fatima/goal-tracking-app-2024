@@ -21,6 +21,8 @@ public class CurrentGoalEntity {
     @Column(name = "time_spent")
     private Duration timeSpent;
 
+    @Column(name = "current_task")
+    private String currentTask;
 
     @ManyToOne
     private NewGoalEntity newGoal;
