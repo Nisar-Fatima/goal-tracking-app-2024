@@ -46,8 +46,6 @@ public class CurrentGoalController implements Initializable {
     @FXML
     private DatePicker datePicker;
     private boolean isErrorMessageShown = false;
-    private boolean dataSaved = false;
-
     public CurrentGoalController(NewGoalService newGoalService, CurrentGoalService currentGoalService, @Lazy StageManager stageManager) {
         this.newGoalService = newGoalService;
         this.currentGoalService = currentGoalService;
@@ -196,8 +194,8 @@ public class CurrentGoalController implements Initializable {
                 currentGoalEntity.setCurrentTask(taskText);
                 currentGoalService.save(currentGoalEntity);
                 FXUtils.showMessage(Alert.AlertType.INFORMATION, "Goal details saved successfully");
-                dataSaved = true;
                 resetFields();
+                populateDropdown();
             }
         }catch(Exception e){
             FXUtils.showMessage(Alert.AlertType.ERROR, e.getMessage());
@@ -381,11 +379,13 @@ public class CurrentGoalController implements Initializable {
                     showMessage(Alert.AlertType.INFORMATION, "Please select a bold date to delete goal details.");
                 }
                 resetFields();
+                populateDropdown();
             } catch (Exception e) {
                 showMessage(Alert.AlertType.ERROR, "Error occurred while deleting goal details: " + e.getMessage());
             }
         }
     }
+
     private void refreshDatePicker () {
         String selectedGoal = savedCurrentGoals.getValue().toString();
         List<CurrentGoalEntity> goalDates = currentGoalService.getDatesForGoal(selectedGoal);
