@@ -16,9 +16,12 @@ import org.springframework.stereotype.Controller;
 import java.net.URL;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.techtide.goaltracking.util.FXUtils.showMessage;
+
 @Controller
 public class CurrentGoalController implements Initializable {
     private final NewGoalService newGoalService;
@@ -29,14 +32,20 @@ public class CurrentGoalController implements Initializable {
     private Spinner<Integer> hoursSpinner;
     @FXML
     private Spinner<Integer> minutesSpinner;
+    @FXML
+    public Button updateButton;
+    @FXML
+    public ChoiceBox savedCurrentGoals;
+    @FXML
+    public Button deleteButoon;
+    @FXML
+    private TextArea taskTextArea;
 
     @FXML
     private ChoiceBox<String> goalChoiceBox;
     @FXML
     private DatePicker datePicker;
     private boolean isErrorMessageShown = false;
-    private boolean dataSaved = false;
-
     public CurrentGoalController(NewGoalService newGoalService, CurrentGoalService currentGoalService, @Lazy StageManager stageManager) {
         this.newGoalService = newGoalService;
         this.currentGoalService = currentGoalService;
@@ -44,10 +53,19 @@ public class CurrentGoalController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        populateDropdown();
         goalChoiceBox.setItems(FXCollections.observableList(getUncompletedGoals()));
         goalChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
+                savedCurrentGoals.getSelectionModel().clearSelection();
                 onGoalSelected(newVal);
+                datePicker.setValue(null);
+            }
+        });
+        savedCurrentGoals.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                goalChoiceBox.getSelectionModel().clearSelection();
+                onUpdateGoalSelected(String.valueOf(newVal));
                 resetData();
             }
         });
@@ -72,12 +90,15 @@ public class CurrentGoalController implements Initializable {
         });
         datePicker.getEditor().setDisable(true);
         datePicker.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if (goalChoiceBox.getSelectionModel().getSelectedItem() == null && newValue != null && !isErrorMessageShown) {
+            if (newValue != null && goalChoiceBox.getSelectionModel().isEmpty() && savedCurrentGoals.getSelectionModel().isEmpty() && !isErrorMessageShown) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Please select a goal before setting a date.");
                 isErrorMessageShown = true;
                 datePicker.setValue(null);
             } else{
                 isErrorMessageShown = false;
+            }
+            if (newValue != null && savedCurrentGoals.getValue() != null) {
+                updateUIWithDateAndGoal(savedCurrentGoals.getValue().toString(), newValue);
             }
         });
     }
@@ -102,6 +123,7 @@ public class CurrentGoalController implements Initializable {
         datePicker.setValue(null);
         hoursSpinner.getValueFactory().setValue(0);
         minutesSpinner.getValueFactory().setValue(0);
+        taskTextArea.setText(" ");
     }
     private void onGoalSelected(String goalName) {
         NewGoalEntity selectedGoal = newGoalService.getGoalByGoalName(goalName);
@@ -140,6 +162,15 @@ public class CurrentGoalController implements Initializable {
             int hours = hoursSpinner.getValue();
             int minutes = minutesSpinner.getValue();
             LocalDate date = datePicker.getValue();
+            String taskText = taskTextArea.getText().trim();
+            if ( taskText== null) {
+               taskText = "";
+            }
+            if (!savedCurrentGoals.getSelectionModel().isEmpty()) {
+                // If a goal is selected from savedCurrentGoals, show an error message
+                showMessage(Alert.AlertType.WARNING, " Please use the appropriate action (Update or Delete)");
+                return;
+            }
 
             if (selectedGoal == null || selectedGoal.isEmpty() || date == null) {
                 FXUtils.showMessage(Alert.AlertType.WARNING, "Please select a goal  and enter a valid date.");
@@ -160,10 +191,11 @@ public class CurrentGoalController implements Initializable {
                 currentGoalEntity.setCurrentGoal(selectedGoal);
                 currentGoalEntity.setDate(date);
                 currentGoalEntity.setTimeSpent(Duration.ofHours(hours).plusMinutes(minutes));
+                currentGoalEntity.setCurrentTask(taskText);
                 currentGoalService.save(currentGoalEntity);
                 FXUtils.showMessage(Alert.AlertType.INFORMATION, "Goal details saved successfully");
-                dataSaved = true;
                 resetFields();
+                populateDropdown();
             }
         }catch(Exception e){
             FXUtils.showMessage(Alert.AlertType.ERROR, e.getMessage());
@@ -175,15 +207,188 @@ public class CurrentGoalController implements Initializable {
         hoursSpinner.getValueFactory().setValue(0);
         minutesSpinner.getValueFactory().setValue(0);
         datePicker.setValue(null);
+        taskTextArea.setText("");
+        savedCurrentGoals.getSelectionModel().clearSelection();
+
+    }
+    private void populateDropdown() {
+
+        List<String> uniqueGoals = new ArrayList<>();
+        final List<CurrentGoalEntity> goals = currentGoalService.findAllCurrentGoals();
+        Set<String> gouls = new HashSet<>();
+        goals.stream().map(goul ->
+                gouls.add(goul.getCurrentGoal())
+        ).collect(Collectors.toList());
+        uniqueGoals = gouls.stream().toList();
+        savedCurrentGoals.setItems(FXCollections.observableList(uniqueGoals));
+    }
+    private void onUpdateGoalSelected(String savedCurrentGoals) {
+        List<CurrentGoalEntity> goalDates = currentGoalService.getDatesForGoal(savedCurrentGoals);
+        if (!goalDates.isEmpty()) {
+            NewGoalEntity selectedGoal = newGoalService.getGoalByGoalName(savedCurrentGoals);
+            if (selectedGoal != null) {
+                LocalDate startDate = selectedGoal.getStartDate();
+                LocalDate endDate = selectedGoal.getEndDate();
+                configureDatePickerToUpdate(goalDates, startDate, endDate);
+            }
+        } else {
+            showMessage(Alert.AlertType.INFORMATION,"No dates found for the selected goal");
+        }
+    }
+    private void configureDatePickerToUpdate(List<CurrentGoalEntity> goalDates, LocalDate startDate, LocalDate endDate) {
+        if (datePicker != null) {
+            datePicker.setDayCellFactory(picker -> new DateCell() {
+                @Override
+                public void updateItem(LocalDate date, boolean empty) {
+                    super.updateItem(date, empty);
+                    if (empty || date == null) {
+                        setText(null);
+                    } else {
+                        setText(date.format(DateTimeFormatter.ofPattern("d")));
+                        if (containsDate(goalDates, date)) {
+                            setStyle("-fx-font-weight: bold;");
+                        } else {
+                            setStyle("");
+                        }
+                    }
+                    setDisable(empty || date.isBefore(startDate) || date.isAfter(endDate));
+                }
+            });
+        } else {
+            System.out.println("DatePicker is null. Make sure it's initialized.");
+        }
     }
 
-    @FXML
-    public void onTaskListpressed()  {
-        if (!dataSaved) {
-            FXUtils.showMessage(Alert.AlertType.ERROR, "Please save your current goal before switching to the Task page.");
-        } else {
-            stageManager.switchScene(FxmlView.TASK);
+    private boolean containsDate(List<CurrentGoalEntity> goalDates, LocalDate date) {
+        for (CurrentGoalEntity goalDate : goalDates) {
+            if (goalDate.getDate().equals(date)) {
+                return true;
+            }
         }
+        return false;
+    }
+    private void updateUIWithDateAndGoal(String selectedGoal, LocalDate selectedDate) {
+        try {
+            Optional<CurrentGoalEntity> currentGoalOptional = currentGoalService.getCurrentGoalForDate(selectedGoal, selectedDate);
+            if (currentGoalOptional.isPresent()) {
+                CurrentGoalEntity currentGoalEntity = currentGoalOptional.get();
+                Duration duration = currentGoalEntity.getTimeSpent();
+
+                int hours = (int) (duration.toMinutes() / 60);
+                int minutes = (int) (duration.toMinutes() % 60);
+
+                hoursSpinner.getValueFactory().setValue(hours);
+                minutesSpinner.getValueFactory().setValue(minutes);
+
+                String taskData = currentGoalEntity.getCurrentTask();
+                if (taskData != null) {
+                    taskTextArea.setText(taskData);
+                }
+            }
+        } catch (Exception e) {
+            showMessage(Alert.AlertType.ERROR, e.getMessage());
+        }
+    }
+    @FXML
+    private void onUpdateButtonPressed() {
+        if (!goalChoiceBox.getSelectionModel().isEmpty()) {
+            showMessage(Alert.AlertType.WARNING, " Please use the Save Button to save goal details.");
+            return;
+        }
+        String selectedGoal2;
+        if (savedCurrentGoals.getValue() != null) {
+            selectedGoal2 = savedCurrentGoals.getValue().toString();
+        } else {
+            selectedGoal2 = null;
+        }
+        if (selectedGoal2 == null || selectedGoal2.isEmpty()) {
+            showMessage(Alert.AlertType.WARNING, "Please select a goal and bold date to update.");
+            return;
+        }
+        String selectedGoal = savedCurrentGoals.getValue().toString();
+        LocalDate selectedDate1 = datePicker.getValue();
+        if (selectedDate1 == null) {
+            showMessage(Alert.AlertType.INFORMATION, "Please select a bold date.");
+            return;
+        }
+        if (selectedGoal == null || selectedGoal.isEmpty()) {
+            showMessage(Alert.AlertType.WARNING, "Please select a goal.");
+            return;
+        }
+        try {
+            LocalDate selectedDate = datePicker.getValue();
+            int hours = hoursSpinner.getValue();
+            int minutes = minutesSpinner.getValue();
+            String taskText = taskTextArea.getText().trim();
+            Optional<CurrentGoalEntity> existingGoalEntityOptional = currentGoalService.getCurrentGoalForDate(selectedGoal, selectedDate);
+            if (existingGoalEntityOptional.isPresent()) {
+                CurrentGoalEntity existingGoalEntity = existingGoalEntityOptional.get();
+                existingGoalEntity.setTimeSpent(Duration.ofHours(hours).plusMinutes(minutes));
+                existingGoalEntity.setCurrentTask(taskText);
+                currentGoalService.save(existingGoalEntity);
+                showMessage(Alert.AlertType.INFORMATION, "Goal details updated successfully.");
+            } else {
+                showMessage(Alert.AlertType.INFORMATION, "Please select a bold date to update goal details");
+            }
+            resetFields();
+        } catch (Exception e) {
+            showMessage(Alert.AlertType.ERROR, "Error occurred while updating goal details: " + e.getMessage());
+        }
+    }
+    @FXML
+    private void onDeleteButtonPressed() {
+        if (!goalChoiceBox.getSelectionModel().isEmpty()) {
+            showMessage(Alert.AlertType.INFORMATION, " Please use the Save Button to save goal details.");
+            return;
+        }
+        if (savedCurrentGoals == null) {
+            showMessage(Alert.AlertType.ERROR, "Error occurred while retrieving selected goal.");
+            return;
+        }
+        String selectedGoal;
+        if (savedCurrentGoals.getValue() != null) {
+            selectedGoal = savedCurrentGoals.getValue().toString();
+        } else {
+            selectedGoal = null;
+        }
+        if (selectedGoal == null || selectedGoal.isEmpty()) {
+            showMessage(Alert.AlertType.INFORMATION, "Please select a goal and bold date to delete.");
+            return;
+        }
+        LocalDate selectedDate = datePicker.getValue();
+        if (selectedDate == null) {
+            showMessage(Alert.AlertType.INFORMATION, "Please select a bold date.");
+            return;
+        }
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Deletion");
+        confirmAlert.setHeaderText("Are you sure you want to delete the goal details for the selected date?");
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                Optional<CurrentGoalEntity> existingGoalEntityOptional = currentGoalService.getCurrentGoalForDate(selectedGoal, selectedDate);
+                if (existingGoalEntityOptional.isPresent()) {
+                    currentGoalService.delete(existingGoalEntityOptional.get());
+                    refreshDatePicker();
+                    showMessage(Alert.AlertType.INFORMATION, "Goal details deleted successfully.");
+                } else {
+                    showMessage(Alert.AlertType.INFORMATION, "Please select a bold date to delete goal details.");
+                }
+                resetFields();
+                populateDropdown();
+            } catch (Exception e) {
+                showMessage(Alert.AlertType.ERROR, "Error occurred while deleting goal details: " + e.getMessage());
+            }
+        }
+    }
+
+    private void refreshDatePicker () {
+        String selectedGoal = savedCurrentGoals.getValue().toString();
+        List<CurrentGoalEntity> goalDates = currentGoalService.getDatesForGoal(selectedGoal);
+        NewGoalEntity selectedGoalEntity = newGoalService.getGoalByGoalName(selectedGoal);
+        LocalDate startDate = selectedGoalEntity.getStartDate();
+        LocalDate endDate = selectedGoalEntity.getEndDate();
+        configureDatePickerToUpdate(goalDates, startDate, endDate);
     }
     @FXML
     public void onBackIconPressed()  {

@@ -53,7 +53,7 @@ public enum FxmlView {
 
         @Override
         public String getFxmlFile() {
-            return "/fxml/currentGoalPage.fxml";
+            return "/fxml/currentGoal.fxml";
         }
     },
     STOPWATCH{
