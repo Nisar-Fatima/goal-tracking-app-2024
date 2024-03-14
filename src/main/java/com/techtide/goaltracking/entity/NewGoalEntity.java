@@ -2,7 +2,9 @@ package com.techtide.goaltracking.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
-    @Data
+import java.util.List;
+
+@Data
     @Entity
     @Table(schema = "goal", name="newgoal", uniqueConstraints = {
             @UniqueConstraint(name ="Newgoal_uk1", columnNames = "goal")
@@ -25,5 +27,9 @@ import java.time.LocalDate;
         @Column(name = "end_date")
         private LocalDate endDate;
 
-    }
+    @OneToMany(mappedBy = "newGoal", cascade = CascadeType.ALL)
+    private List<CurrentGoalEntity> currentGoals;
+
+
+}
 

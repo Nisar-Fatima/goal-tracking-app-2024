@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="386.0" prefWidth="453.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.StopwatchController">
+    <children>
+        <ImageView fitHeight="199.0" fitWidth="199.0" layoutX="129.0" layoutY="36.0" opacity="0.66" pickOnBounds="true" preserveRatio="true">
+            <image>
+                                <Image url="@circle stopwatch.png" />
+            </image>
+            <effect>
+                <DisplacementMap>
+                    <mapData>
+                        <FloatMap />
+                    </mapData>
+                </DisplacementMap>
+            </effect>
+        </ImageView>
+        <Label fx:id="timeLabel" layoutX="153.0" layoutY="86.0" text="00:00:00:00" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+
+        </Label>
+        <Button fx:id="startButton" layoutX="137.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="39.0" prefWidth="94.0" style="-fx-background-color:                 transperant;" text="Start" textFill="#f5f5f5">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Button>
+        <Button fx:id="resetButton" layoutX="222.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleReset" prefHeight="39.0" prefWidth="94.0" style="-fx-background-color:                 transperant;" text="Reset" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Button>
+        <Button fx:id="lapButton" layoutX="169.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleLap" prefHeight="40.0" prefWidth="120.0" style="-fx-background-color:                  transparent;" text="Lap" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Button>
+        <TextArea fx:id="lapsTextArea" layoutX="132.0" layoutY="233.0" prefHeight="121.0" prefWidth="199.0" promptText="Lap Time" />
+        <ScrollBar layoutX="316.0" layoutY="232.0" orientation="VERTICAL" prefHeight="121.0" prefWidth="14.0" />
+    </children>
+</AnchorPane>
