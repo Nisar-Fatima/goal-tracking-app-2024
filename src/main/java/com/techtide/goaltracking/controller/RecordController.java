@@ -6,6 +6,7 @@ import com.techtide.goaltracking.enums.FxmlView;
 import com.techtide.goaltracking.repository.CurrentGoalRepo;
 import com.techtide.goaltracking.service.NewGoalService;
 import com.techtide.goaltracking.service.RecordService;
+import com.techtide.goaltracking.util.FXUtils;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -77,17 +78,24 @@ public class RecordController implements Initializable {
 
     private void loadData() {
         String selectedGoal = goalChoiceBox.getValue();
-        if (selectedGoal != null ) {
+        if (selectedGoal != null) {
             List<CurrentGoalEntity> data = recordService.findAllDataForGoal(selectedGoal);
-            setUpItemTable(data);
+            if (data.isEmpty()) {
+                clearTable();
+                FXUtils.showMessage(Alert.AlertType.INFORMATION, "No Data Found.There is no data available for the selected goal.");
+            } else {
+                setUpItemTable(data);
+            }
         }
     }
+
     private void setUpItemTable(List<CurrentGoalEntity> data) {
         nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNewGoal().getName()));
         goalColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurrentGoal()));
         startDateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNewGoal().getStartDate()));
         endDateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNewGoal().getEndDate()));
         dateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDate()));
+        taskListColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCurrentTask()));
         timeSpentColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTimeSpent()));
         timeSpentColumn.setCellFactory(column -> new TableCell<>() {
             @Override
@@ -105,12 +113,10 @@ public class RecordController implements Initializable {
         totalTimeSpentColumn.setCellValueFactory(cellData -> {
             List<Duration> durations = currentGoalRepo.findTimeSpentForGoal(cellData.getValue().getCurrentGoal());
             Duration totalDuration = durations.stream().reduce(Duration::plus).orElse(Duration.ZERO);
-            if (cellData.getValue().equals(data.get(0))) {
-                return new SimpleObjectProperty<>(totalDuration);
-            } else {
-                return new SimpleObjectProperty<>(Duration.ZERO);
-            }
+            Duration displayDuration = cellData.getValue().equals(data.get(0)) ? totalDuration : Duration.ZERO;
+            return new SimpleObjectProperty<>(displayDuration);
         });
+
         totalTimeSpentColumn.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Duration duration, boolean empty) {
@@ -134,6 +140,10 @@ public class RecordController implements Initializable {
             }
         });
         combinedGoalTable.setItems(FXCollections.observableList(data));
+    }
+
+    private void clearTable() {
+        combinedGoalTable.getItems().clear();
     }
     @FXML
     public void onBackIconPressed() {
