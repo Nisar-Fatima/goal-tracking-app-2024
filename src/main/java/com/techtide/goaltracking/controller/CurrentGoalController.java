@@ -316,7 +316,6 @@ public class CurrentGoalController implements Initializable {
             return;
         }
         try {
-            NewGoalEntity newGoalEntity = newGoalService.getGoalByGoalName(selectedGoal);
             LocalDate selectedDate = datePicker.getValue();
             int hours = hoursSpinner.getValue();
             int minutes = minutesSpinner.getValue();
@@ -324,9 +323,6 @@ public class CurrentGoalController implements Initializable {
             Optional<CurrentGoalEntity> existingGoalEntityOptional = currentGoalService.getCurrentGoalForDate(selectedGoal, selectedDate);
             if (existingGoalEntityOptional.isPresent()) {
                 CurrentGoalEntity existingGoalEntity = existingGoalEntityOptional.get();
-                existingGoalEntity.setNewGoal(newGoalEntity);
-                existingGoalEntity.setCurrentGoal(selectedGoal);
-                existingGoalEntity.setDate(selectedDate);
                 existingGoalEntity.setTimeSpent(Duration.ofHours(hours).plusMinutes(minutes));
                 existingGoalEntity.setCurrentTask(taskText);
                 currentGoalService.save(existingGoalEntity);
