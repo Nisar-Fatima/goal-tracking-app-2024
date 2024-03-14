@@ -38,7 +38,7 @@
                   <ColorAdjust contrast="0.09" />
                </effect>
             </ImageView>
-            <ImageView   fitHeight="150.0" fitWidth="200.0" layoutX="652.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView onMouseClicked="#onContactUsMenuItemSelected"  fitHeight="150.0" fitWidth="200.0" layoutX="652.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img_29.png" />
                </image>
