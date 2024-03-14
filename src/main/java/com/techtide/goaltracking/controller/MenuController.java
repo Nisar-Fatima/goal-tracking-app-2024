@@ -28,14 +28,14 @@ public class MenuController implements Initializable {
         @FXML
     public void onRecordsMenuItemSelected() throws Exception {
         stageManager.switchScene(FxmlView.RECORDS);    }
-//  @FXML
-//  public void onStopWatchMenuItemSelected() throws Exception {
-//        stageManager.switchScene(FxmlView.STOPWATCH);
-//  }
-//    @FXML
-//    public void onContactUsMenuItemSelected() throws Exception {      // Ye 0 code k saath exit kr de ga
-//        stageManager.switchScene(FxmlView.CONTACTUS);
-//    }
+  @FXML
+  public void onStopWatchMenuItemSelected() throws Exception {
+        stageManager.switchScene(FxmlView.STOPWATCH);
+  }
+    @FXML
+    public void onContactUsMenuItemSelected() throws Exception {      // Ye 0 code k saath exit kr de ga
+        stageManager.switchScene(FxmlView.CONTACTUS);
+    }
 
 }
 

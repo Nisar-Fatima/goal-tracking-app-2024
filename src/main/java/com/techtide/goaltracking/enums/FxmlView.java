@@ -100,17 +100,17 @@ public enum FxmlView {
         public String getFxmlFile() {
             return "/fxml/task.fxml";
         }
+    },
+    CONTACTUS{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("contactUs.title");
+        }
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/contactUs.fxml";
+        }
     };
-//    CONTACTUS{
-//        @Override
-//        public String getTitle() {
-//            return getStringFromResourceBundle("contactUs.title");
-//        }
-//        @Override
-//        public String getFxmlFile() {
-//            return "/fxml/contactUs.fxml";
-//        }
-//    };
 
     static String getStringFromResourceBundle(final String key){
         return ResourceBundle.getBundle("Bundle").getString(key);

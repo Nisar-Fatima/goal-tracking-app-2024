@@ -10,7 +10,7 @@
     <children>
         <ImageView fitHeight="199.0" fitWidth="199.0" layoutX="129.0" layoutY="36.0" opacity="0.66" pickOnBounds="true" preserveRatio="true">
             <image>
-                                <Image url="@circle%20stopwatch.png" />
+                                <Image url="@circle stopwatch.png" />
             </image>
             <effect>
                 <DisplacementMap>
