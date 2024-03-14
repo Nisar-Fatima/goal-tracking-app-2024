@@ -181,7 +181,7 @@ public class StopwatchController implements Initializable {
 
         private void recordLap() {
             lapCounter++;
-            lapsTextArea.appendText("Lap " + lapCounter + ":                                   " + lapTime / 1000 + "."
+            lapsTextArea.appendText("   Lap " + lapCounter + ":                           " + lapTime / 1000 + "."
                     + String.format("%02d", lapTime % 1000 / 10) + "s\n");
             lapTime = 0;
         }
