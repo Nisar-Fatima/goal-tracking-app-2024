@@ -9,6 +9,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
@@ -29,8 +30,10 @@ public class NewPasswordController implements Initializable {
     private Label passwordFeedbackLabel2;
     @FXML
     private Label confirmPasswordFeedbackLabel;
+
     private final StageManager stageManager;
     private final SignUpService signUpService;
+
 
     public NewPasswordController(@Lazy StageManager stageManager, SignUpService signUpService) {
         this.stageManager = stageManager;
@@ -38,6 +41,7 @@ public class NewPasswordController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        newPasswordField.textProperty().addListener((observableValue, oldValue, newValue) -> onConfirmPassswordFieldChanged());
 
     }
     @FXML
@@ -96,7 +100,7 @@ public class NewPasswordController implements Initializable {
             return;
         }
         if (!newPassword.equals(confirmNewPassword)) {
-            FXUtils.showMessage(AlertType.ERROR, "New password and confirm password do not match.");
+            FXUtils.showMessage(AlertType.ERROR, "Passwords don't matched");
             return;
         }
         if(!(newPassword.matches(".*[a-zA-Z]+.*") &&
@@ -113,10 +117,10 @@ public class NewPasswordController implements Initializable {
             FXUtils.showMessage(AlertType.ERROR, "Failed to update the password.");
         }
     }
-
     @FXML
     public void onCancelButtonPressed() {
         stageManager.switchScene(FxmlView.LOGIN);
+
     }
 
 }
