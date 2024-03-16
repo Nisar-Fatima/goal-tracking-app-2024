@@ -1,4 +1,6 @@
 package com.techtide.goaltracking.controller;
+import com.techtide.goaltracking.config.StageManager;
+import com.techtide.goaltracking.enums.FxmlView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.util.Duration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -17,6 +20,7 @@ import java.util.ResourceBundle;
 
 @Controller
 public class StopwatchController implements Initializable {
+    private final StageManager stageManager;
 
     @FXML
     private Label timeLabel;
@@ -37,6 +41,10 @@ public class StopwatchController implements Initializable {
     private ScrollPane scrollPane;
 
     private Stopwatch stopwatch;
+
+    public StopwatchController(@Lazy StageManager stageManager) {
+        this.stageManager = stageManager;
+    }
 
 
     @FXML
@@ -62,7 +70,6 @@ public class StopwatchController implements Initializable {
         stopwatch = new Stopwatch(timeLabel, startButton, resetButton, lapButton, lapsTextArea, scrollPane);
         initializeStopwatchIfNeeded();
     }
-
     private void initializeStopwatchIfNeeded() {
         if (stopwatch == null) {
             stopwatch = new Stopwatch(timeLabel, startButton, resetButton, lapButton, lapsTextArea, scrollPane);
@@ -181,11 +188,13 @@ public class StopwatchController implements Initializable {
 
         private void recordLap() {
             lapCounter++;
-            lapsTextArea.appendText("Lap " + lapCounter + ":                                   " + lapTime / 1000 + "."
-                    + String.format("%02d", lapTime % 1000 / 10) + "s\n");
+            lapsTextArea.appendText("  Lap   " + lapCounter +    ":                    " + lapTime / 1000 + "."+ String.format("%02d", lapTime % 1000 / 10) + "s\n");
             lapTime = 0;
         }
 
-
+    }
+    @FXML
+    public void onBackIconClicked() throws Exception{
+        stageManager.switchScene(FxmlView.MENU);
     }
 }

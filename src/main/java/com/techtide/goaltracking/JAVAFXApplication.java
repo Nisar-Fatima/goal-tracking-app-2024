@@ -22,7 +22,6 @@ public class JAVAFXApplication extends Application {
     }
     public void stop()  {
         springContext.close();
-
     }
     protected void displayInitialScene(){
         stageManager.switchScene(FxmlView.LOGIN);

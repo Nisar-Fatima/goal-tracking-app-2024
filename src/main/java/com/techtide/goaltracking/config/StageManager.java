@@ -42,6 +42,7 @@ public class StageManager {
 
     private void show(final Parent rootNode, final String title) {
         final Scene scene = prepareScene(rootNode);
+        scene.getStylesheets().add("fxml/styles.css");
         stage.setTitle(title);
         stage.setScene(scene);
         stage.sizeToScene();

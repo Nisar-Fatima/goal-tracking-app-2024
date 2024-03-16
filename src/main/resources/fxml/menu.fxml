@@ -2,14 +2,15 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.ColorAdjust?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  fx:controller="com.techtide.goaltracking.controller.MenuController" prefHeight="563.0" prefWidth="852.0" style="-fx-background-color: #6b1147;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: #df91bb;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.MenuController">
+
+<!--<AnchorPane prefHeight="491.0" prefWidth="809.0" style="-fx-background-color: #6b1147;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.MenuController">-->
    <children>
       <Label layoutX="447.0" layoutY="91.0" />
       <Label layoutX="366.0" layoutY="41.0" textFill="#990a3a">
@@ -17,77 +18,86 @@
             <Font name="System Bold Italic" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="391.0" layoutY="356.0" text="Stopwatch" />
-      <AnchorPane layoutY="46.0" prefHeight="470.0" prefWidth="858.0" style="-fx-background-color: #df91bb;">
-         <children>
-            <ImageView  onMouseClicked="#onStopWatchMenuItemSelected" fitHeight="206.0" fitWidth="236.0" layoutX="316.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img_28.png" />
-               </image>
-            </ImageView>
-            <ImageView  onMouseClicked="#onRecordsMenuItemSelected" fitHeight="150.0" fitWidth="200.0" layoutX="661.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img_50.png" />
-               </image>
-            </ImageView>
-            <ImageView  onMouseClicked="#onCurrentGoalMenuItemSelected" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img_18.png" />
-               </image>
-               <effect>
-                  <ColorAdjust contrast="0.09" />
-               </effect>
-            </ImageView>
-            <ImageView onMouseClicked="#onContactUsMenuItemSelected"  fitHeight="150.0" fitWidth="200.0" layoutX="652.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img_29.png" />
-               </image>
-               <effect>
-                  <ColorAdjust contrast="0.04" />
-               </effect>
-            </ImageView>
-            <Label layoutX="67.0" layoutY="188.0" text="New Goal">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="57.0" layoutY="436.0" prefHeight="40.0" prefWidth="79.0" text="Current Goal ">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="715.0" layoutY="188.0" text="Records">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="719.0" layoutY="437.0" text="Contact us">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <ImageView  onMouseClicked="#onNewGoalMenuItemSelected" fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img_23.png" />
-               </image>
-               <effect>
-                  <ColorAdjust brightness="-0.02" contrast="0.09" hue="0.09" />
-               </effect>
-            </ImageView>
-            <Label layoutX="419.0" layoutY="320.0" text="StopWatch">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-         </children>
+
+      <AnchorPane prefHeight="608.0" prefWidth="158.0" style="-fx-background-color: #d754d7;">
+
          <effect>
-            <InnerShadow height="43.23" radius="19.6525" width="37.38">
-               <color>
-                  <Color red="0.41960784792900085" green="0.06666667014360428" blue="0.27843138575553894" />
-               </color>
-               <input>
-                  <ColorAdjust contrast="-0.04" hue="0.06" saturation="-0.11" />
-               </input>
-            </InnerShadow>
+            <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
          </effect>
       </AnchorPane>
+      <ImageView fitHeight="96.0" fitWidth="118.0" layoutX="304.0" layoutY="18.0" onMouseClicked="#onCurrentGoalMenuItemSelected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img_18.png" />
+         </image>
+         <effect>
+            <ColorAdjust contrast="0.09" />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="104.0" fitWidth="118.0" layoutX="447.0" layoutY="14.0" onMouseClicked="#onStopWatchMenuItemSelected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img_28.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="96.0" fitWidth="150.0" layoutX="595.0" layoutY="18.0" onMouseClicked="#onRecordsMenuItemSelected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img_50.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="104.0" fitWidth="121.0" layoutX="712.0" layoutY="14.0" onMouseClicked="#onContactUsMenuItemSelected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img_29.png" />
+         </image>
+         <effect>
+            <ColorAdjust contrast="0.04" />
+         </effect>
+      </ImageView>
+      <Label layoutX="471.0" layoutY="128.0" text="StopWatch">
+         <font>
+            <Font name="Sitka Banner Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="313.0" layoutY="125.0" prefHeight="26.0" prefWidth="104.0" text="Current Goal ">
+         <font>
+            <Font name="Sitka Banner Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="192.0" layoutY="129.0" text="New Goal">
+         <font>
+            <Font name="Sitka Banner Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="619.0" layoutY="127.0" prefHeight="18.0" prefWidth="60.0" text="Records">
+         <font>
+            <Font name="Sitka Banner Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="730.0" layoutY="127.0" text="Contact us">
+         <font>
+            <Font name="Sitka Banner Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="263.0" layoutY="288.0" text="Welcome to your journey of greatness! ">
+         <font>
+            <Font name="Sitka Banner Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <Label layoutX="191.0" layoutY="388.0" text="Set your goals high, and don't stop till you get there">
+         <font>
+            <Font name="Sitka Banner Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="112.0" fitWidth="87.0" layoutX="180.0" layoutY="23.0" onMouseClicked="#onNewGoalMenuItemSelected" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img_23.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-0.02" contrast="0.09" hue="0.03" />
+         </effect>
+      </ImageView>
+      <Line endX="309.0" layoutX="469.0" layoutY="431.0" startX="-275.8000183105469" />
+      <Line endX="258.199951171875" layoutX="453.0" layoutY="339.0" startX="-199.39999389648438" />
    </children>
    <effect>
-      <ColorAdjust contrast="-0.06" hue="-0.07" />
+      <ColorAdjust contrast="-0.04" hue="0.06" saturation="-0.11" />
    </effect>
 </AnchorPane>
