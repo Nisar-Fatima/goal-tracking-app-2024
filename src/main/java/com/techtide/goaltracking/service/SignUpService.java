@@ -5,4 +5,6 @@ public interface SignUpService {
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
     boolean validateLogin(String username, String password);
+    Boolean updatePassword(String username, String newPassword);
+
 }

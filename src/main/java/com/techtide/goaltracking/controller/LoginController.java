@@ -44,5 +44,10 @@ public class LoginController implements Initializable {
             usernameTextField.requestFocus();
         }
     }
+    @FXML
+    public void onForgotButtonPressed() {
+        stageManager.switchScene(FxmlView.NEW_PASSWORD);
+    }
+
 }
 

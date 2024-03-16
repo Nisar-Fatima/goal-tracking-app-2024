@@ -1,0 +1,122 @@
+package com.techtide.goaltracking.controller;
+import com.techtide.goaltracking.config.StageManager;
+import com.techtide.goaltracking.enums.FxmlView;
+import com.techtide.goaltracking.service.SignUpService;
+import com.techtide.goaltracking.util.FXUtils;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Controller;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+@Controller
+public class NewPasswordController implements Initializable {
+    @FXML
+    private TextField usernameTextField;
+    @FXML
+    private PasswordField newPasswordField;
+    @FXML
+    private PasswordField confirmNewPasswordField;
+    @FXML
+    private Label passwordFeedbackLabel;
+    @FXML
+    private Label passwordFeedbackLabel2;
+    @FXML
+    private Label confirmPasswordFeedbackLabel;
+    private final StageManager stageManager;
+    private final SignUpService signUpService;
+
+    public NewPasswordController(@Lazy StageManager stageManager, SignUpService signUpService) {
+        this.stageManager = stageManager;
+        this.signUpService = signUpService;
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+    @FXML
+    public void onPasswordTextFieldChanged() {
+        String passwordFeedback = getPasswordFeedback(newPasswordField.getText());
+        passwordFeedbackLabel.setText(passwordFeedback);
+        String passwordFeedback2 = getPasswordFeedback2(newPasswordField.getText());
+        passwordFeedbackLabel2.setText(passwordFeedback2);
+    }
+    private String getPasswordFeedback(String password) {
+        if (!password.matches(".*[a-zA-Z]+.*")) {
+            return "Password must contain at least one letter.";
+        }
+        if (!password.matches(".*[0-9]+.*")) {
+            return "Password must contain at least one number.";
+        }
+        if (!password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+.*")) {
+            return "Password must contain at least one special character.";
+        }
+        return "";
+    }
+
+    private String getPasswordFeedback2(String password) {
+        if (password.matches(".*[a-zA-Z]+.*") &&
+                password.matches(".*[0-9]+.*") &&
+                password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+.*")) {
+            return "Strong password";
+        }
+        return "";
+    }
+    @FXML
+    public void onConfirmPassswordFieldChanged() {
+        String confirmPasswordFeedback = getConfirmPasswordFeedback(confirmNewPasswordField.getText());
+        confirmPasswordFeedbackLabel.setText(confirmPasswordFeedback);
+    }
+
+    private String getConfirmPasswordFeedback(String confirmNewPassword) {
+        String newPassword = newPasswordField.getText();
+        if (newPassword.equals(confirmNewPassword)) {
+            return "Passwords match.";
+        }
+        return "";
+    }
+    @FXML
+    public void onSubmitButtonPressed() {
+        String username = usernameTextField.getText();
+        String newPassword = newPasswordField.getText();
+        String confirmNewPassword = confirmNewPasswordField.getText();
+
+        if (username.isBlank() || newPassword.isBlank() || confirmNewPassword.isBlank()) {
+            FXUtils.showMessage(AlertType.ERROR, "Must enter all information..");
+            return;
+        }
+        if (!signUpService.existsByUsername(username)) {
+            FXUtils.showMessage(AlertType.ERROR, "Username does not exist.");
+            return;
+        }
+        if (!newPassword.equals(confirmNewPassword)) {
+            FXUtils.showMessage(AlertType.ERROR, "New password and confirm password do not match.");
+            return;
+        }
+        if(!(newPassword.matches(".*[a-zA-Z]+.*") &&
+                newPassword.matches(".*[0-9]+.*") &&
+                newPassword.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+.*"))){
+            FXUtils.showMessage(AlertType.INFORMATION, "Please keep your password strong.");
+            return;
+        }
+        boolean updateSuccess = signUpService.updatePassword(username, newPassword);
+        if (updateSuccess) {
+            FXUtils.showMessage(AlertType.INFORMATION, "Password successfully updated.");
+            stageManager.switchScene(FxmlView.LOGIN);
+        } else {
+            FXUtils.showMessage(AlertType.ERROR, "Failed to update the password.");
+        }
+    }
+
+    @FXML
+    public void onCancelButtonPressed() {
+        stageManager.switchScene(FxmlView.LOGIN);
+    }
+
+}
