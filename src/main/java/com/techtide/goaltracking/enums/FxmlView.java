@@ -110,6 +110,16 @@ public enum FxmlView {
         public String getFxmlFile() {
             return "/fxml/contactUs.fxml";
         }
+    },
+    NEW_PASSWORD{
+        @Override
+        public String getTitle() {
+            return getStringFromResourceBundle("newPassword.title");
+        }
+        @Override
+        public String getFxmlFile() {
+            return "/fxml/newPassword.fxml";
+        }
     };
 
     static String getStringFromResourceBundle(final String key){

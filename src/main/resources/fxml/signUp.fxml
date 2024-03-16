@@ -14,14 +14,16 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.SignUpController">
+
+<!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.SignUpController">-->
     <children>
-        <AnchorPane layoutY="-31.0" prefHeight="377.0" prefWidth="431.0" style="-fx-background-color: #b98da5;">
+        <AnchorPane layoutY="-2.0" prefHeight="614.0" prefWidth="430.0" style="-fx-background-color: #b98da5;">
             <effect>
                 <ColorAdjust contrast="-0.04" hue="0.06" saturation="-0.11" />
             </effect>
          <children>
-            <ImageView fitHeight="454.0" fitWidth="267.0" layoutX="78.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="608.0" fitWidth="356.0" layoutX="45.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img_3.png" />
                </image>
@@ -29,72 +31,86 @@
                   <DropShadow />
                </effect>
             </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="28.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img_51.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="1.0" contrast="0.83" hue="0.46" saturation="-0.11" />
+               </effect>
+            </ImageView>
          </children>
         </AnchorPane>
-        <AnchorPane layoutX="431.0" layoutY="-16.0" prefHeight="454.0" prefWidth="395.0" style="-fx-background-color: #d754d7;">
-            <effect>
-                <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
-            </effect>
-            <children>
-                <TextField fx:id="usernameTextField" layoutX="123.0" layoutY="109.0" onKeyTyped="#onUsernameTextFieldChanged" promptText="Username" />
-                <TextField fx:id="emailTextField" layoutX="123.0" layoutY="176.0" promptText="Email" />
-                <PasswordField fx:id="passwordTextField" layoutX="123.0" layoutY="245.0" onKeyTyped="#onPasswordTextFieldChanged" promptText="Password" />
-                <Label layoutX="123.0" layoutY="150.0" text="Email" textFill="#6e046c">
-                    <font>
+      <AnchorPane layoutX="430.0" layoutY="-1.0" prefHeight="608.0" prefWidth="394.0" style="-fx-background-color: #df91bb;">
+         <effect>
+            <ColorAdjust contrast="-0.04" hue="0.06" saturation="-0.11" />
+         </effect>
+         <children>
+            <AnchorPane prefHeight="614.0" prefWidth="398.0" style="-fx-background-color: #d754d7;">
+               <effect>
+                  <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
+               </effect>
+               <children>
+                  <TextField fx:id="usernameTextField" layoutX="157.0" layoutY="180.0" onKeyTyped="#onUsernameTextFieldChanged" promptText="Username" />
+                  <TextField fx:id="emailTextField" layoutX="157.0" layoutY="247.0" promptText="Email" />
+                  <PasswordField fx:id="passwordTextField" layoutX="158.0" layoutY="312.0" onKeyTyped="#onPasswordTextFieldChanged" promptText="Password" />
+                  <Label layoutX="43.0" layoutY="246.0" text="Email" textFill="#6e046c">
+                     <font>
+                        <Font name="Sitka Banner Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="311.0" text="Password" textFill="#6e046c">
+                     <font>
+                        <Font name="Sitka Banner Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="153.0" layoutY="325.0" />
+                  <CheckBox fx:id="rememberMeCheckBox" layoutX="157.0" layoutY="371.0" mnemonicParsing="false" text="Remember me" textFill="#6e046c">
+                     <font>
+                        <Font name="Sitka Banner Bold" size="16.0" />
+                     </font>
+                  </CheckBox>
+                  <Label layoutX="224.0" layoutY="345.0" prefHeight="26.0" prefWidth="74.0" textFill="#6e046c">
+                     <font>
                         <Font name="System Bold" size="13.0" />
-                    </font>
-            </Label>
-                <Label layoutX="123.0" layoutY="219.0" text="Password" textFill="#6e046c">
-                    <font>
-                        <Font name="System Bold" size="13.0" />
-                    </font>
-            </Label>
-                <Label layoutX="118.0" layoutY="258.0" />
-                <CheckBox fx:id="rememberMeCheckBox" layoutX="98.0" layoutY="291.0" mnemonicParsing="false" text="Remember Me" textFill="#6e046c">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-            </CheckBox>
-                <Label layoutX="198.0" layoutY="362.0" prefHeight="26.0" prefWidth="74.0" textFill="#6e046c">
-                    <font>
-                        <Font name="System Bold" size="13.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="27.0" fitWidth="24.0" layoutX="105.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true" />
-                <Label layoutX="130.0" layoutY="14.0" text="Sign Up" textFill="#660357">
-                    <font>
-                        <Font name="System Bold" size="36.0" />
-                    </font>
-                </Label>
-                <Button layoutX="117.0" layoutY="335.0" mnemonicParsing="false" onAction="#onSignUpButtonPressed" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #700194;" text="Sign Up" textFill="#cd7fd1">
-                    <font>
-                        <Font name="System Bold" size="12.0" />
-                    </font>
-                    <effect>
+                     </font>
+                  </Label>
+                  <Label layoutX="153.0" layoutY="51.0" prefHeight="46.0" prefWidth="130.0" text="Sign Up" textFill="#660357">
+                     <font>
+                        <Font name="Sitka Banner Bold" size="37.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="131.0" layoutY="461.0" mnemonicParsing="false" onAction="#onSignUpButtonPressed" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #700194;" text="Sign Up" textFill="#cd7fd1">
+                     <font>
+                        <Font name="Sitka Banner Bold" size="23.0" />
+                     </font>
+                     <effect>
                         <InnerShadow>
-                            <color>
-                                <Color red="0.16078431904315948" green="0.007843137718737125" blue="0.1411764770746231" />
-                            </color>
+                           <color>
+                              <Color red="0.16078431904315948" green="0.007843137718737125" blue="0.1411764770746231" />
+                           </color>
                         </InnerShadow>
-                    </effect>
-                </Button>
-            <Label layoutX="124.0" layoutY="84.0" text="Username" textFill="#6e046c">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-                <Label fx:id="passwordFeedbackLabel" layoutX="122.0" layoutY="271.0" prefHeight="19.0" prefWidth="254.0" textFill="#c30707">
-                    <font>
+                     </effect>
+                  </Button>
+                  <Label layoutX="34.0" layoutY="179.0" text="Username" textFill="#6e046c">
+                     <font>
+                        <Font name="Sitka Banner Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="passwordFeedbackLabel" layoutX="157.0" layoutY="338.0" prefHeight="19.0" prefWidth="230.0" textFill="#c30707">
+                     <font>
                         <Font size="10.0" />
-                    </font></Label>
-                <Label fx:id="usernameFeedbacklabel" layoutX="122.0" layoutY="134.0" prefHeight="17.0" prefWidth="188.0" textFill="#c30707" />
-                <Label fx:id="passwordFeedbackLabel2" layoutX="122.0" layoutY="271.0" prefHeight="17.0" prefWidth="99.0" textFill="#286e38">
-                    <font>
+                     </font>
+                  </Label>
+                  <Label fx:id="usernameFeedbacklabel" layoutX="157.0" layoutY="206.0" prefHeight="18.0" prefWidth="193.0" textFill="#c30707" />
+                  <Label fx:id="passwordFeedbackLabel2" layoutX="157.0" layoutY="338.0" prefHeight="17.0" prefWidth="99.0" textFill="#286e38">
+                     <font>
                         <Font size="11.0" />
-                    </font></Label>
-
-                      <!--            <Button layoutX="126.0" layoutY="300.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Login" textFill="#cd7fd1"  style="-fx-background-color: #700194; />-->
-            </children>
-        </AnchorPane>
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

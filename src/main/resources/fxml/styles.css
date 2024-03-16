@@ -1,8 +1,50 @@
+.date-picker .date-cell {
+    -fx-background-color: #ecbbd4;
+    -fx-text-fill: #5b053c;
+}
+.date-picker-popup .month-year-pane {
+    -fx-background-color:#ecbbd4;
+}
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: #5b053c; /* Text color */
+}
+.date-picker .date-cell:hover {
+    -fx-background-color: #df91bb;
+    -fx-focus-color: transparent;
+}
 
+.choice-box:focused{
+    -fx-border-color: #e377b3;
+}
+.date-picker:focused{
+    fx-border-color: #e377b3;
+}
+.label{
+    -fx-text-fill:#5b053c ;
+}
+.menu-item:hover {
+    -fx-background-color: #df91bb;
+}
+.menu-item:default {
+    -fx-background-color: #df91bb;
+}
+.task-area:focused {
+    -fx-border-color: #e377b3;
+}
+.button {
+    -fx-background-radius: 20px;
+}
+.button3:focused {
+    -fx-effect: innershadow(gaussian, rgb(193, 64, 128), 10, 0.5, 2, 2);
+}
+.button1:focused {
+    -fx-effect: innershadow(gaussian, rgb(193, 64, 128), 10, 0.5, 2, 2);
+}
+.button2:focused {
+    -fx-effect: innershadow(gaussian, rgb(193, 64, 128), 10, 0.5, 2, 2);
+}
 
-
-
-
-
-
-
+.button4 {
+    -fx-background-color: #b93f7e;
+    -fx-background-radius: 20px;
+}

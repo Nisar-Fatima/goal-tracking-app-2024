@@ -16,79 +16,79 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: #df91bb;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.CurrentGoalController">
    <children>
-      <Button fx:id="deleteButoon" layoutX="257.0" layoutY="505.0" mnemonicParsing="false" onAction="#onDeleteButtonPressed" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: DF91BBFF;" text="Delete" textFill="#842a49">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <effect>
-            <InnerShadow>
-               <color>
-                  <Color red="0.6431372761726379" green="0.0470588244497776" blue="0.3764705955982208" />
-               </color>
-            </InnerShadow>
-         </effect>
-      </Button>
-      <Button fx:id="updateButton" layoutX="256.0" layoutY="451.0" mnemonicParsing="false" onAction="#onUpdateButtonPressed" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: DF91BBFF;" text="Update" textFill="#842a49">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <effect>
-            <InnerShadow>
-               <color>
-                  <Color red="0.6431372761726379" green="0.0470588244497776" blue="0.3764705955982208" />
-               </color>
-            </InnerShadow>
-         </effect>
-      </Button>
-      <ChoiceBox fx:id="savedCurrentGoals" layoutX="205.0" layoutY="339.0" prefHeight="26.0" prefWidth="226.0" />
-      <Spinner fx:id="hoursSpinner" editable="true" initialValue="0" layoutX="204.0" layoutY="235.0" max="24" min="0" prefHeight="26.0" prefWidth="106.0" />
-      <Spinner fx:id="minutesSpinner" editable="true" initialValue="0" layoutX="323.0" layoutY="235.0" max="59" min="0" prefHeight="26.0" prefWidth="106.0" />
-      <Label layoutX="207.0" layoutY="214.0" prefHeight="18.0" prefWidth="98.0" text="Hours" textFill="#5b053c">
+      <ChoiceBox fx:id="savedCurrentGoals" layoutX="222.0" layoutY="292.0" prefHeight="26.0" prefWidth="226.0" styleClass="choice-box" />
+      <Spinner fx:id="hoursSpinner" editable="true" initialValue="0" layoutX="222.0" layoutY="231.0" max="24" min="0" prefHeight="26.0" prefWidth="106.0" />
+      <Spinner fx:id="minutesSpinner" editable="true" initialValue="0" layoutX="341.0" layoutY="231.0" max="59" min="0" prefHeight="26.0" prefWidth="106.0" />
+      <Label layoutX="226.0" layoutY="210.0" prefHeight="18.0" prefWidth="98.0" text="Hours" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="327.0" layoutY="214.0" prefHeight="18.0" prefWidth="98.0" text="Minutes" textFill="#5b053c">
+      <Label layoutX="345.0" layoutY="210.0" prefHeight="18.0" prefWidth="98.0" text="Minutes" textFill="#5b053c">
          <font>
             <Font name="Sitka Text Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="223.0" prefHeight="50.0" prefWidth="114.0" text="Time Spent" textFill="#5b053c">
+      <Label layoutX="35.0" layoutY="216.0" prefHeight="50.0" prefWidth="114.0" text="Time Spent" textFill="#5b053c">
          <font>
-            <Font name="Showcard Gothic" size="20.0" />
+            <Font name="Sitka Banner Bold" size="23.0" />
          </font>
       </Label>
-      <DatePicker fx:id="datePicker" layoutX="205.0" layoutY="169.0" prefHeight="26.0" prefWidth="226.0" />
-      <Label layoutX="60.0" layoutY="157.0" prefHeight="50.0" prefWidth="66.0" text="Date" textFill="#5b053c">
+      <DatePicker fx:id="datePicker" layoutX="222.0" layoutY="172.0" prefHeight="26.0" prefWidth="226.0" styleClass="date-picker" />
+      <Label layoutX="65.0" layoutY="157.0" prefHeight="50.0" prefWidth="54.0" text="Date" textFill="#5b053c">
          <font>
-            <Font name="Showcard Gothic" size="20.0" />
+            <Font name="Sitka Banner Bold" size="23.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="goalChoiceBox" layoutX="204.0" layoutY="111.0" prefHeight="26.0" prefWidth="226.0" />
-      <Label layoutX="14.0" layoutY="103.0" prefHeight="42.0" prefWidth="159.0" text="Select to save" textFill="#5b053c">
+      <ChoiceBox fx:id="goalChoiceBox" layoutX="221.0" layoutY="114.0" prefHeight="26.0" prefWidth="226.0" styleClass="choice-box" />
+      <Label layoutX="27.0" layoutY="103.0" prefHeight="42.0" prefWidth="129.0" text="Select to save" textFill="#5b053c">
          <font>
-            <Font name="Showcard Gothic" size="20.0" />
+            <Font name="Sitka Banner Bold" size="23.0" />
          </font>
       </Label>
-      <Label layoutX="241.0" prefHeight="74.0" prefWidth="270.0" text="Current Goal" textFill="#5b053c">
+      <Label layoutX="304.0" prefHeight="74.0" prefWidth="210.0" text="CurrentGoal" textFill="#5b053c">
          <font>
-            <Font name="Showcard Gothic" size="37.0" />
+            <Font name="Sitka Heading Bold" size="37.0" />
          </font>
       </Label>
-      <TextArea fx:id="taskTextArea" layoutX="531.0" layoutY="124.0" prefHeight="403.0" prefWidth="260.0" />
-      <Label layoutX="612.0" layoutY="63.0" prefHeight="43.0" prefWidth="98.0" text="Task List" textFill="#5b053c">
+      <TextArea fx:id="taskTextArea" layoutX="532.0" layoutY="110.0" prefHeight="409.0" prefWidth="257.0" styleClass="task-area" />
+      <Label layoutX="612.0" layoutY="63.0" prefHeight="43.0" prefWidth="114.0" text="Task List" textFill="#5b053c">
          <font>
-            <Font name="Showcard Gothic" size="20.0" />
+            <Font name="Sitka Banner Bold" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="205.0" layoutY="315.0" prefHeight="26.0" prefWidth="204.0" text="Select to Update and delete" textFill="#5b053c">
+      <Label layoutX="223.0" layoutY="266.0" prefHeight="26.0" prefWidth="226.0" text="Select to Update and Delete" textFill="#5b053c">
          <font>
-            <Font name="Sitka Banner Bold" size="18.0" />
+            <Font name="Sitka Banner Bold" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="256.0" layoutY="398.0" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: DF91BBFF;" text="Save" textFill="#842a49">
+      <Button layoutX="58.0" layoutY="382.0" mnemonicParsing="false" onAction="#onSaveButtonPressed" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: DF91BBFF;" styleClass="button2" text="Save" textFill="#5b053c">
          <font>
-            <Font size="18.0" />
+            <Font name="Sitka Banner Bold" size="23.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.6431372761726379" green="0.0470588244497776" blue="0.3764705955982208" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="deleteButoon" layoutX="356.0" layoutY="382.0" mnemonicParsing="false" onAction="#onDeleteButtonPressed" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: DF91BBFF;" styleClass="button1" text="Delete" textFill="#5b053c">
+         <font>
+            <Font name="Sitka Banner Bold" size="23.0" />
+         </font>
+         <effect>
+            <InnerShadow>
+               <color>
+                  <Color red="0.6431372761726379" green="0.0470588244497776" blue="0.3764705955982208" />
+               </color>
+            </InnerShadow>
+         </effect>
+      </Button>
+      <Button fx:id="updateButton" layoutX="205.0" layoutY="382.0" mnemonicParsing="false" onAction="#onUpdateButtonPressed" prefHeight="43.0" prefWidth="122.0" style="-fx-background-color: DF91BBFF;" styleClass="button3" text="Update" textFill="#5b053c">
+         <font>
+            <Font name="Sitka Banner Bold" size="23.0" />
          </font>
          <effect>
             <InnerShadow>
