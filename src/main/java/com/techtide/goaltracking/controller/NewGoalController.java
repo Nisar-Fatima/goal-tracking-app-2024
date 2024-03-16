@@ -17,6 +17,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static com.techtide.goaltracking.util.FXUtils.showMessage;
+
 @Controller
 public class NewGoalController implements Initializable {
     private final StageManager stageManager;
@@ -123,23 +125,10 @@ public class NewGoalController implements Initializable {
                 return;
             }
 
-            if (!selectedGoal.equals(newGoal)) {
-                NewGoalEntity existingGoal = newGoalService.getGoalByGoalName(newGoal);
-                if (existingGoal != null) {
-                    FXUtils.showMessage(Alert.AlertType.ERROR, "Goal name already exists. Please choose a different name.");
-                    return;
-                }
-            }
-
             if (newEndDate.isBefore(newStartDate)) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "End date must be after or equal to start date");
                 return;
             }
-            if (isNameAlreadyExists(newGoal)) {
-                FXUtils.showMessage(Alert.AlertType.ERROR, "Goal name already exists. Please choose a different name.");
-                return;
-            }
-
             goalEntity.setName(newName);
             goalEntity.setGoal(newGoal);
             goalEntity.setStartDate(newStartDate);
@@ -154,6 +143,7 @@ public class NewGoalController implements Initializable {
             loadGoals();
 
             FXUtils.showMessage(Alert.AlertType.INFORMATION, "Goal details updated successfully!");
+            resetFields();
         } catch (Exception e) {
             FXUtils.showMessage(Alert.AlertType.ERROR, "Failed to update goal details: " + e.getMessage());
         }
@@ -181,19 +171,32 @@ public class NewGoalController implements Initializable {
                 loadGoals();
 
                 FXUtils.showMessage(Alert.AlertType.INFORMATION, "Goal deleted successfully!");
+                resetFields();
+
             } catch (Exception e) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Failed to delete goal: " + e.getMessage());
             }
         }
     }
 
-
+    private void resetFields() {
+        nameTextField.clear();
+        goalTextField.clear();
+        startDateTextField.setValue(null);
+        endDateTextField.setValue(null);
+        deleteChoiceBox.getSelectionModel().clearSelection();
+    }
     @FXML
     public void onSaveButtonPressed() {
         String name = nameTextField.getText();
         String goal = goalTextField.getText();
         LocalDate startDate = startDateTextField.getValue();
         LocalDate endDate = endDateTextField.getValue();
+        if (!deleteChoiceBox.getSelectionModel().isEmpty()) {
+
+            showMessage(Alert.AlertType.WARNING, " Please use the appropriate action (Update or Delete)");
+            return;
+        }
 
         if (name.isBlank() || goal.isBlank() || startDate == null || endDate == null) {
             FXUtils.showMessage(Alert.AlertType.ERROR, "All fields must be entered");
@@ -208,6 +211,7 @@ public class NewGoalController implements Initializable {
             FXUtils.showMessage(Alert.AlertType.ERROR, "Goal name already exists. Please choose a different name.");
             return;
         }
+
 
         try {
             NewGoalEntity entity = new NewGoalEntity();
@@ -226,6 +230,7 @@ public class NewGoalController implements Initializable {
             loadGoals();
 
             FXUtils.showMessage(Alert.AlertType.INFORMATION, "Goal saved successfully!");
+            resetFields();
         } catch (Exception e) {
             String error = e.getMessage();
             if (error.contains("newgoal_uk1")) {
