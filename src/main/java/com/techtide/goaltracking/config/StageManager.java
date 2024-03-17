@@ -54,6 +54,23 @@ public class StageManager {
             logAndExit("Unable to show scene for title" + title, exception);
         }
     }
+    public void dialogScene(final FxmlView view) {
+        final Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
+        showDialog(viewRootNodeHierarchy, view.getTitle());
+    }
+    private void showDialog(final Parent rootNode, final String title){
+        try{
+            Stage dialogStage = new Stage();
+            dialogStage.setResizable(true);
+            dialogStage.setTitle(title);
+            dialogStage.centerOnScreen();
+            dialogStage.sizeToScene();
+            dialogStage.setScene(new Scene(rootNode));
+            dialogStage.showAndWait();
+        }catch(Exception e){
+            logAndExit("Unable to show scene for title" + title,e);
+        }
+    }
 
     private Scene prepareScene(final Parent rootNode) {
         Scene scene = stage.getScene();

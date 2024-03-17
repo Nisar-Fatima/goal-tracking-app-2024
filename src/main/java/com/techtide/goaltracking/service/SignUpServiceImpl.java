@@ -33,4 +33,16 @@ public class SignUpServiceImpl implements SignUpService {
         }
             return false;
     }
-}
+
+    @Override
+    public Boolean updatePassword(String username, String newPassword) {
+            Optional<SignUpEntity> userOpt = signUpRepo.findByUsername(username);
+            if (userOpt.isPresent()) {
+                SignUpEntity user = userOpt.get();
+                user.setPassword(newPassword);
+                signUpRepo.save(user);
+                return true;
+            }
+            return false;
+        }
+    }
