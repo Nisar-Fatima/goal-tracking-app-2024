@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: #df91bb;"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.NewGoalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: #df91bb;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.NewGoalController">
    <children>
       <Label layoutX="494.0" prefHeight="74.0" prefWidth="154.0" text="New Goal" textFill="#5b053c">
          <font>
@@ -69,7 +69,7 @@
          <children>
             <ImageView fitHeight="354.0" fitWidth="282.0" layoutX="13.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img_10.png" />
+                  <Image url="@newGoalImage.png" />
                </image>
                <effect>
                   <ColorAdjust contrast="0.06" />
