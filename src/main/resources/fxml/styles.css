@@ -19,9 +19,9 @@
 .date-picker:focused{
     fx-border-color: #e377b3;
 }
-.label{
-    -fx-text-fill:#5b053c ;
-}
+/*.label{*/
+/*    -fx-text-fill:#5b053c ;*/
+/*}*/
 .menu-item:hover {
     -fx-background-color: #df91bb;
 }

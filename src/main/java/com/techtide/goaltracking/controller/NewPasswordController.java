@@ -6,6 +6,7 @@ import com.techtide.goaltracking.util.FXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -26,6 +27,10 @@ public class NewPasswordController implements Initializable {
     private PasswordField confirmNewPasswordField;
     @FXML
     private Label passwordFeedbackLabel;
+    @FXML
+    private Button cancelButton;
+    @FXML
+    private Button saveButton;
     @FXML
     private Label passwordFeedbackLabel2;
     @FXML
@@ -112,15 +117,15 @@ public class NewPasswordController implements Initializable {
         boolean updateSuccess = signUpService.updatePassword(username, newPassword);
         if (updateSuccess) {
             FXUtils.showMessage(AlertType.INFORMATION, "Password successfully updated.");
-            stageManager.switchScene(FxmlView.LOGIN);
+           Stage stage=(Stage) saveButton.getScene().getWindow();
         } else {
             FXUtils.showMessage(AlertType.ERROR, "Failed to update the password.");
         }
     }
     @FXML
     public void onCancelButtonPressed() {
-        stageManager.switchScene(FxmlView.LOGIN);
-
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
 }

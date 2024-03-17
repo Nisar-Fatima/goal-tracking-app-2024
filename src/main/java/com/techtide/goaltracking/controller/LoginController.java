@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     }
     @FXML
     public void onForgotButtonPressed() {
-        stageManager.switchScene(FxmlView.NEW_PASSWORD);
+        stageManager.dialogScene(FxmlView.NEW_PASSWORD);
     }
 
 }
