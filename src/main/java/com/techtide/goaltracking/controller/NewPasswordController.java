@@ -1,6 +1,4 @@
 package com.techtide.goaltracking.controller;
-import com.techtide.goaltracking.config.StageManager;
-import com.techtide.goaltracking.enums.FxmlView;
 import com.techtide.goaltracking.service.SignUpService;
 import com.techtide.goaltracking.util.FXUtils;
 import javafx.fxml.FXML;
@@ -11,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -35,13 +32,9 @@ public class NewPasswordController implements Initializable {
     private Label passwordFeedbackLabel2;
     @FXML
     private Label confirmPasswordFeedbackLabel;
-
-    private final StageManager stageManager;
     private final SignUpService signUpService;
 
-
-    public NewPasswordController(@Lazy StageManager stageManager, SignUpService signUpService) {
-        this.stageManager = stageManager;
+    public NewPasswordController(SignUpService signUpService) {
         this.signUpService = signUpService;
     }
     @Override
@@ -79,9 +72,17 @@ public class NewPasswordController implements Initializable {
     }
     @FXML
     public void onConfirmPassswordFieldChanged() {
-        String confirmPasswordFeedback = getConfirmPasswordFeedback(confirmNewPasswordField.getText());
-        confirmPasswordFeedbackLabel.setText(confirmPasswordFeedback);
+        String newPassword = newPasswordField.getText();
+        String confirmNewPassword = confirmNewPasswordField.getText();
+
+        if (!newPassword.isEmpty() && !confirmNewPassword.isEmpty()) {
+            String confirmPasswordFeedback = getConfirmPasswordFeedback(confirmNewPassword);
+            confirmPasswordFeedbackLabel.setText(confirmPasswordFeedback);
+        } else {
+            confirmPasswordFeedbackLabel.setText("");
+        }
     }
+
 
     private String getConfirmPasswordFeedback(String confirmNewPassword) {
         String newPassword = newPasswordField.getText();
@@ -118,6 +119,7 @@ public class NewPasswordController implements Initializable {
         if (updateSuccess) {
             FXUtils.showMessage(AlertType.INFORMATION, "Password successfully updated.");
            Stage stage=(Stage) saveButton.getScene().getWindow();
+           stage.close();
         } else {
             FXUtils.showMessage(AlertType.ERROR, "Failed to update the password.");
         }

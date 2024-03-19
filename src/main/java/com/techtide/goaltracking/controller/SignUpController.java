@@ -20,7 +20,7 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField emailTextField;
     @FXML
-    private PasswordField passwordTextField;
+    private PasswordField passwordField;
     @FXML
     private Label passwordFeedbackLabel;
     @FXML
@@ -39,7 +39,7 @@ public class SignUpController implements Initializable {
     }
     @FXML
     public void onUsernameTextFieldChanged() {
-        String usernameFeedback = getusernameFeedback(usernameTextField.getText());
+        String usernameFeedback = getusernameFeedback(usernameTextField.getText().trim());
         usernameFeedbacklabel.setText(usernameFeedback);
     }
 
@@ -51,9 +51,9 @@ public class SignUpController implements Initializable {
     }
     @FXML
     public void onPasswordTextFieldChanged() {
-        String passwordFeedback = getPasswordFeedback(passwordTextField.getText());
+        String passwordFeedback = getPasswordFeedback(passwordField.getText());
         passwordFeedbackLabel.setText(passwordFeedback);
-        String passwordFeedback2 = getPasswordFeedback2(passwordTextField.getText());
+        String passwordFeedback2 = getPasswordFeedback2(passwordField.getText());
         passwordFeedbackLabel2.setText(passwordFeedback2);
     }
 
@@ -82,9 +82,9 @@ public class SignUpController implements Initializable {
     @FXML
     public void onSignUpButtonPressed() {
         try {
-            String username = usernameTextField.getText();
+            String username = usernameTextField.getText().trim();
             String email = emailTextField.getText();
-            String password = passwordTextField.getText();
+            String password = passwordField.getText();
             if (username.isBlank() || email.isBlank() || password.isBlank()) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Must enter all information..");
                 return;
@@ -97,6 +97,12 @@ public class SignUpController implements Initializable {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid email or email already exist.");
                 return;
             }
+            if(!(password.matches(".*[a-zA-Z]+.*") &&
+                    password.matches(".*[0-9]+.*") &&
+                    password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]+.*"))){
+                FXUtils.showMessage(Alert.AlertType.INFORMATION, "Please keep your password strong. ");
+                return;
+            }
             final SignUpEntity entity = new SignUpEntity();
             entity.setUsername(username);
             entity.setEmail(email);
@@ -105,10 +111,15 @@ public class SignUpController implements Initializable {
             FXUtils.showMessage(Alert.AlertType.INFORMATION, "SignUp Successfully");
             stageManager.switchScene(FxmlView.MENU);
         } catch (Exception e) {
-            FXUtils.showMessage(Alert.AlertType.ERROR, e.getMessage());
+            FXUtils.showMessage(Alert.AlertType.ERROR, "Account creation failed. Please retry or contact support.");
         }
     }
     private boolean isValidEmail(String email) {
-        return email.matches("[a-zA-Z0-9._%+-]+@gmail\\.com");
+        return email.matches("[a-zA-Z0-9._%+-]+@(gmail\\.com|yahoo\\.com)");
+    }
+    @FXML
+    public void onBackButtonPressed(){
+        stageManager.switchScene(FxmlView.LOGIN);
+
     }
 }

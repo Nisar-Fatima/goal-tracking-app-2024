@@ -40,7 +40,7 @@
                   <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
                </effect>
                <TextField fx:id="usernameTextField" layoutX="180.0" layoutY="216.0" promptText="Username" />
-               <PasswordField fx:id="passwordTextField" layoutX="178.0" layoutY="291.0" promptText="Password" />
+               <PasswordField fx:id="passwordField" layoutX="178.0" layoutY="291.0" promptText="Password" />
                <Label layoutX="61.0" layoutY="215.0" text="Username" textFill="#6e046c">
                   <font>
                      <Font name="Sitka Banner Bold" size="22.0" />
@@ -93,7 +93,7 @@
                      <Font name="Sitka Banner Bold" size="22.0" />
                   </font>
                </Hyperlink>
-               <CheckBox layoutX="180.0" layoutY="325.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="143.0" text="show password" textFill="#660357">
+               <CheckBox fx:id="showPasswordCheckBox" onAction="#changeVisibility" layoutX="180.0" layoutY="325.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="143.0" text="show password" textFill="#660357">
                   <font>
                      <Font name="Sitka Banner Bold" size="16.0" />
                   </font>
@@ -108,7 +108,7 @@
                      <Font name="Sitka Banner Bold" size="16.0" />
                   </font>
                </CheckBox>
-               <TextField layoutX="179.0" layoutY="291.0" promptText="passsword" />
+               <TextField fx:id="passwordText" layoutX="179.0" layoutY="291.0" promptText="passsword" />
             </AnchorPane>
          </children>
       </AnchorPane>

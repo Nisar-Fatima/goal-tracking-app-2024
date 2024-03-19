@@ -8,4 +8,9 @@ public class FXUtils {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public static boolean showConfirmDialog(final String message) {
+        ShowConfirmDialog showConfirmDialog = new ShowConfirmDialog();
+        return showConfirmDialog.show(message);
+    }
 }
