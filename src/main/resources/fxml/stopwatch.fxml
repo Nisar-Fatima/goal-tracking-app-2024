@@ -12,7 +12,7 @@
 
 <!--<AnchorPane prefHeight="517.0" prefWidth="577.0" style="-fx-background-color: #df91bb;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.StopwatchController">-->
 
-<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: #df91bb;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.StopwatchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="819.0" style="-fx-background-color: #df91bb;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.techtide.goaltracking.controller.StopwatchController">
     <children>
       <AnchorPane layoutX="416.0" prefHeight="608.0" prefWidth="403.0" style="-fx-background-color: #d754d7;">
          <effect>
@@ -60,13 +60,13 @@
             <Font name="Sitka Heading Bold" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="447.0" text="Punctuality is the thief of time">
+      <Label layoutX="14.0" layoutY="447.0" text="Punctuality is the thief of time" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold Italic" size="32.0" />
          </font>
       </Label>
-      <Line endX="202.80001831054688" layoutX="192.0" layoutY="498.0" startX="-170.0" />
-      <ImageView onMouseClicked="#onBackIconClicked" fitHeight="26.0" fitWidth="28.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <Line endX="202.80001831054688" layoutX="192.0" layoutY="498.0" startX="-170.0" stroke="#5b053c" />
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutY="1.0" onMouseClicked="#onBackIconClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img_51.png" />
          </image>
