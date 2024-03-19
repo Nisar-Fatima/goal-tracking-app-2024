@@ -41,17 +41,17 @@
                </effect>
                <TextField fx:id="usernameTextField" layoutX="180.0" layoutY="216.0" promptText="Username" />
                <PasswordField fx:id="passwordField" layoutX="178.0" layoutY="291.0" promptText="Password" />
-               <Label layoutX="61.0" layoutY="215.0" text="Username" textFill="#6e046c">
+               <Label layoutX="61.0" layoutY="215.0" text="Username" textFill="#46033c">
                   <font>
                      <Font name="Sitka Banner Bold" size="22.0" />
                   </font>
                </Label>
-               <Label layoutX="64.0" layoutY="292.0" text="Password" textFill="#6e046c">
+               <Label layoutX="64.0" layoutY="292.0" text="Password" textFill="#46033c">
                   <font>
                      <Font name="Sitka Banner Bold" size="22.0" />
                   </font>
                </Label>
-               <Label layoutX="171.0" layoutY="536.0" prefHeight="30.0" prefWidth="100.0" text="New User?" textFill="#660357">
+               <Label layoutX="171.0" layoutY="536.0" prefHeight="30.0" prefWidth="100.0" text="New User?" textFill="#46033c">
                   <font>
                      <Font name="Sitka Banner Bold" size="22.0" />
                   </font>
@@ -71,7 +71,7 @@
                      </DropShadow>
                   </effect>
                </ImageView>
-               <Label layoutX="10.0" layoutY="136.0" prefHeight="40.0" prefWidth="397.0" text="Welcome to your Goal Tracking App" textFill="#660357">
+               <Label layoutX="10.0" layoutY="136.0" prefHeight="40.0" prefWidth="397.0" text="Welcome to your Goal Tracking App" textFill="#46033c">
                   <font>
                      <Font name="Sitka Banner Bold" size="27.0" />
                   </font>
@@ -88,22 +88,22 @@
                      </InnerShadow>
                   </effect>
                </Button>
-               <Hyperlink layoutX="277.0" layoutY="533.0" onAction="#onSignUpButtonPressed" text="Sign Up" textFill="#660357" underline="true">
+               <Hyperlink layoutX="277.0" layoutY="533.0" onAction="#onSignUpButtonPressed" text="Sign Up" textFill="#46033c" underline="true">
                   <font>
                      <Font name="Sitka Banner Bold" size="22.0" />
                   </font>
                </Hyperlink>
-               <CheckBox fx:id="showPasswordCheckBox" onAction="#changeVisibility" layoutX="180.0" layoutY="325.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="143.0" text="show password" textFill="#660357">
+               <CheckBox fx:id="showPasswordCheckBox" layoutX="180.0" layoutY="325.0" mnemonicParsing="false" onAction="#changeVisibility" prefHeight="22.0" prefWidth="143.0" text="show password" textFill="#46033c">
                   <font>
                      <Font name="Sitka Banner Bold" size="16.0" />
                   </font>
                </CheckBox>
-               <Hyperlink layoutX="283.0" layoutY="466.0" onAction="#onForgotButtonPressed" prefHeight="15.0" prefWidth="125.0" text="forgot password?" textFill="#660357" underline="true">
+               <Hyperlink layoutX="283.0" layoutY="466.0" onAction="#onForgotButtonPressed" prefHeight="15.0" prefWidth="125.0" text="forgot password?" textFill="#46033c" underline="true">
                   <font>
                      <Font name="Sitka Banner Bold" size="16.0" />
                   </font>
                </Hyperlink>
-               <CheckBox fx:id="rememberMeCheckBox" layoutX="14.0" layoutY="468.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="126.0" text="Remember me" textFill="#660357">
+               <CheckBox fx:id="rememberMeCheckBox" layoutX="14.0" layoutY="468.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="126.0" text="Remember me" textFill="#46033c">
                   <font>
                      <Font name="Sitka Banner Bold" size="16.0" />
                   </font>

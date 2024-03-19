@@ -43,7 +43,7 @@
             <Image url="@img_50.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="104.0" fitWidth="121.0" layoutX="712.0" layoutY="14.0" onMouseClicked="#onContactUsMenuItemSelected" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="104.0" fitWidth="96.0" layoutX="708.0" layoutY="18.0" onMouseClicked="#onContactUsMenuItemSelected" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img_29.png" />
          </image>
@@ -51,37 +51,37 @@
             <ColorAdjust contrast="0.04" />
          </effect>
       </ImageView>
-      <Label layoutX="471.0" layoutY="128.0" text="StopWatch">
+      <Label layoutX="471.0" layoutY="128.0" text="StopWatch" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="313.0" layoutY="125.0" prefHeight="26.0" prefWidth="104.0" text="Current Goal ">
+      <Label layoutX="313.0" layoutY="125.0" prefHeight="26.0" prefWidth="104.0" text="Current Goal " textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="192.0" layoutY="129.0" text="New Goal">
+      <Label layoutX="192.0" layoutY="129.0" text="New Goal" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="619.0" layoutY="127.0" prefHeight="18.0" prefWidth="60.0" text="Records">
+      <Label layoutX="619.0" layoutY="127.0" prefHeight="18.0" prefWidth="60.0" text="Records" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="730.0" layoutY="127.0" text="Contact us">
+      <Label layoutX="730.0" layoutY="127.0" text="Contact us" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="263.0" layoutY="288.0" text="Welcome to your journey of greatness! ">
+      <Label layoutX="263.0" layoutY="288.0" text="Welcome to your journey of greatness! " textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold Italic" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="191.0" layoutY="388.0" text="Set your goals high, and don't stop till you get there">
+      <Label layoutX="191.0" layoutY="388.0" text="Set your goals high, and don't stop till you get there" textFill="#5b053c">
          <font>
             <Font name="Sitka Banner Bold Italic" size="28.0" />
          </font>
@@ -94,8 +94,8 @@
             <ColorAdjust brightness="-0.02" contrast="0.09" hue="0.03" />
          </effect>
       </ImageView>
-      <Line endX="309.0" layoutX="469.0" layoutY="431.0" startX="-275.8000183105469" />
-      <Line endX="258.199951171875" layoutX="453.0" layoutY="339.0" startX="-199.39999389648438" />
+      <Line endX="309.0" layoutX="469.0" layoutY="431.0" startX="-275.8000183105469" stroke="#5b053c" />
+      <Line endX="258.199951171875" layoutX="453.0" layoutY="339.0" startX="-199.39999389648438" stroke="#5b053c" />
    </children>
    <effect>
       <ColorAdjust contrast="-0.04" hue="0.06" saturation="-0.11" />

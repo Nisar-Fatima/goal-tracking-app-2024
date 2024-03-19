@@ -15,12 +15,12 @@
 <!--<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="799.0" style="-fx-background-color: D754D7FF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">-->
    <children>
       <ChoiceBox fx:id="goalChoiceBox" layoutX="287.0" layoutY="119.0" prefHeight="26.0" prefWidth="242.0" />
-      <Label layoutX="355.0" layoutY="92.0" text="Select Goal" textFill="#660357">
+      <Label layoutX="355.0" layoutY="75.0" text="Select Goal" textFill="#5b053c">
 
          <font>
             <Font name="Sitka Banner Bold" size="23.0" />
          </font></Label>
-      <ImageView  onMouseClicked="#onBackIconPressed" fitHeight="30.0" fitWidth="27.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="27.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#onBackIconPressed" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img_51.png" />
          </image>
@@ -37,7 +37,7 @@
          <columns>
             <TableColumn fx:id="nameColumn" prefWidth="71.20001375675201" style="-fx-border-color: #5b053c;" text="Name" />
             <TableColumn fx:id="goalColumn" prefWidth="83.99996185302734" style="-fx-border-color: #5b053c;" text="Goal" />
-            <TableColumn  fx:id="startDateColumn" minWidth="0.0" prefWidth="85.59991455078125" style="-fx-border-color: #5b053c;" text="StartDate" />
+            <TableColumn fx:id="startDateColumn" minWidth="0.0" prefWidth="85.59991455078125" style="-fx-border-color: #5b053c;" text="StartDate" />
             <TableColumn fx:id="endDateColumn" prefWidth="84.800048828125" style="-fx-border-color: #5b053c;" text="EndDate" />
             <TableColumn fx:id="dateColumn" prefWidth="78.4000244140625" style="-fx-border-color: #5b053c;" text="CurrentDate" />
             <TableColumn fx:id="timeSpentColumn" prefWidth="81.5999755859375" style="-fx-border-color: #5b053c;" text="TimeSpent" />
