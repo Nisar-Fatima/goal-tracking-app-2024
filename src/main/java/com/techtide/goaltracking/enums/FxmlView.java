@@ -34,7 +34,7 @@ public enum FxmlView {
             return "/fxml/menu.fxml";
         }
     },
-    NEWGOAL {
+    NEW_GOAL {
         @Override
         public String getTitle() {
             return getStringFromResourceBundle("newGoal.title");
@@ -45,7 +45,7 @@ public enum FxmlView {
             return "/fxml/newGoalPage.fxml";
         }
     },
-    CURRENTGOAL{
+    CURRENT_GOAL {
         @Override
         public String getTitle() {
             return getStringFromResourceBundle("currentGoal.title");
@@ -76,29 +76,6 @@ public enum FxmlView {
         @Override
         public String getFxmlFile() {
             return "/fxml/record.fxml";
-        }
-    },
-    //
-    SPREADSHEET{
-        @Override
-        public String getTitle() {
-            return getStringFromResourceBundle("spreadsheet.title");
-        }
-
-        @Override
-        public String getFxmlFile() {
-            return "/fxml/spreadsheet.fxml";
-        }
-    },
-    TASK{
-        @Override
-        public String getTitle() {
-            return getStringFromResourceBundle("task.title");
-        }
-
-        @Override
-        public String getFxmlFile() {
-            return "/fxml/task.fxml";
         }
     },
     CONTACTUS{

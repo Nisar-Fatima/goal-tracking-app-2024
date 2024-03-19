@@ -30,7 +30,7 @@
                   <DropShadow />
                </effect>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="28.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView onMousePressed="#onBackButtonPressed" fitHeight="26.0" fitWidth="28.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img_51.png" />
                </image>
@@ -52,7 +52,7 @@
                <children>
                   <TextField fx:id="usernameTextField" layoutX="157.0" layoutY="180.0" onKeyTyped="#onUsernameTextFieldChanged" promptText="Username" />
                   <TextField fx:id="emailTextField" layoutX="157.0" layoutY="247.0" promptText="Email" />
-                  <PasswordField fx:id="passwordTextField" layoutX="158.0" layoutY="312.0" onKeyTyped="#onPasswordTextFieldChanged" promptText="Password" />
+                  <PasswordField fx:id="passwordField" layoutX="158.0" layoutY="312.0" onKeyTyped="#onPasswordTextFieldChanged" promptText="Password" />
                   <Label layoutX="54.0" layoutY="246.0" text="Email" textFill="#6e046c">
                      <font>
                         <Font name="Sitka Banner Bold" size="22.0" />

@@ -1,5 +1,4 @@
 package com.techtide.goaltracking.controller;
-import com.techtide.goaltracking.config.SpringFXMLLoader;
 import com.techtide.goaltracking.config.StageManager;
 import com.techtide.goaltracking.enums.FxmlView;
 import javafx.fxml.FXML;
@@ -19,11 +18,11 @@ public class MenuController implements Initializable {
     }
     @FXML
     public void onNewGoalMenuItemSelected() throws Exception {
-        stageManager.switchScene(FxmlView.NEWGOAL);
+        stageManager.switchScene(FxmlView.NEW_GOAL);
     }
     @FXML
     public void onCurrentGoalMenuItemSelected() throws Exception {
-        stageManager.switchScene(FxmlView.CURRENTGOAL);
+        stageManager.switchScene(FxmlView.CURRENT_GOAL);
     }
         @FXML
     public void onRecordsMenuItemSelected() throws Exception {
