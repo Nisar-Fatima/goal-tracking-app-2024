@@ -28,12 +28,12 @@
             <ColorAdjust brightness="1.0" contrast="-1.0" hue="-1.0" />
          </effect>
       </ImageView>
-      <Label layoutX="344.0" layoutY="1.0" prefHeight="74.0" prefWidth="126.0" text="Records" textFill="#5b053c">
+      <Label layoutX="344.0" layoutY="1.0" prefHeight="74.0" prefWidth="138.0" text="Records" textFill="#5b053c">
          <font>
-            <Font name="Sitka Banner Bold" size="37.0" />
+            <Font name="Sitka Banner Bold" size="40.0" />
          </font>
       </Label>
-      <TableView fx:id="combinedGoalTable" layoutX="-3.0" layoutY="172.0" prefHeight="362.0" prefWidth="820.0" style="-fx-background-color: #d754d7;">
+      <TableView fx:id="combinedGoalTable" layoutX="-3.0" layoutY="172.0" prefHeight="362.0" prefWidth="820.0" style="-fx-background-color: #df91bb;">
          <columns>
             <TableColumn fx:id="nameColumn" prefWidth="71.20001375675201" style="-fx-border-color: #5b053c;" text="Name" />
             <TableColumn fx:id="goalColumn" prefWidth="83.99996185302734" style="-fx-border-color: #5b053c;" text="Goal" />
@@ -46,7 +46,7 @@
             <TableColumn fx:id="taskListColumn" minWidth="4.0" prefWidth="158.4000122070313" style="-fx-border-color: #5b053c;" text="TaskList" />
          </columns>
          <effect>
-            <ColorAdjust brightness="-0.1" contrast="-0.26" saturation="-0.19" />
+            <ColorAdjust contrast="-0.04" hue="0.06" saturation="-0.19" />
          </effect>
       </TableView>
 

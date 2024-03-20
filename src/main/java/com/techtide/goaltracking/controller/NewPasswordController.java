@@ -37,18 +37,25 @@ public class NewPasswordController implements Initializable {
     public NewPasswordController(SignUpService signUpService) {
         this.signUpService = signUpService;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         newPasswordField.textProperty().addListener((observableValue, oldValue, newValue) -> onConfirmPassswordFieldChanged());
 
     }
+
     @FXML
     public void onPasswordTextFieldChanged() {
-        String passwordFeedback = getPasswordFeedback(newPasswordField.getText());
-        passwordFeedbackLabel.setText(passwordFeedback);
-        String passwordFeedback2 = getPasswordFeedback2(newPasswordField.getText());
-        passwordFeedbackLabel2.setText(passwordFeedback2);
+        String password = newPasswordField.getText();
+        if (!password.isEmpty()) {
+            String passwordFeedback = getPasswordFeedback(password);
+            passwordFeedbackLabel.setText(passwordFeedback);
+            String passwordFeedback2 = getPasswordFeedback2(password);
+            passwordFeedbackLabel2.setText(passwordFeedback2);
+        } else
+            passwordFeedbackLabel.setText("");
     }
+
     private String getPasswordFeedback(String password) {
         if (!password.matches(".*[a-zA-Z]+.*")) {
             return "Password must contain at least one letter.";

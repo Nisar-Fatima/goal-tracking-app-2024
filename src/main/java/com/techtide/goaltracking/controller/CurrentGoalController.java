@@ -71,23 +71,40 @@ public class CurrentGoalController implements Initializable {
         });
         TextFormatter<Integer> hoursFormatter = createIntegerTextFormatter(0);
         hoursSpinner.getEditor().setTextFormatter(hoursFormatter);
-        hoursSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int enteredValue = newValue;
-            if (enteredValue < 0 || enteredValue > 24) {
-                FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter value between 0 and 24.");
-                hoursSpinner.getValueFactory().setValue(24);
-            }
+        hoursSpinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+                try {
+                    Integer intValue = newValue.length() > 0 ? Integer.parseInt(newValue) : 0;
+                    if (intValue < 0 || intValue > 24) {
+                        FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter value between 0 and 24.");
+                        hoursSpinner.getValueFactory().setValue(24);
+                    } else {
+                        hoursSpinner.getValueFactory().setValue(intValue);
+                    }
+                }catch (Exception e){
+                    FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter value between 0 and 24.");
+
+                }
         });
 
         TextFormatter<Integer> minutesFormatter = createIntegerTextFormatter(0);
         minutesSpinner.getEditor().setTextFormatter(minutesFormatter);
-        minutesSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
-            int enteredValue = newValue;
-            if (enteredValue < 0 || enteredValue > 59) {
+        minutesSpinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                Integer intValue = newValue.length() > 0 ? Integer.parseInt(newValue) : 0;
+                if (intValue < 0 || intValue > 59) {
+                    FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for minutes. Please enter value between 0 and 59.");
+                    minutesSpinner.getValueFactory().setValue(59);
+                }
+                else {
+                    minutesSpinner.getValueFactory().setValue(intValue);
+                }
+            }catch (Exception e){
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for minutes. Please enter value between 0 and 59.");
-                minutesSpinner.getValueFactory().setValue(59);
+
             }
         });
+
+
         datePicker.getEditor().setDisable(true);
         datePicker.valueProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null && goalChoiceBox.getSelectionModel().isEmpty() && savedCurrentGoals.getSelectionModel().isEmpty() && !isErrorMessageShown) {
