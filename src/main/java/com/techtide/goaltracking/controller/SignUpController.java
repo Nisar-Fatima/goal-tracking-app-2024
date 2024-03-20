@@ -51,10 +51,14 @@ public class SignUpController implements Initializable {
     }
     @FXML
     public void onPasswordTextFieldChanged() {
-        String passwordFeedback = getPasswordFeedback(passwordField.getText());
-        passwordFeedbackLabel.setText(passwordFeedback);
-        String passwordFeedback2 = getPasswordFeedback2(passwordField.getText());
-        passwordFeedbackLabel2.setText(passwordFeedback2);
+        String password = passwordField.getText();
+        if (!password.isEmpty() ) {
+            String passwordFeedback = getPasswordFeedback(password);
+            passwordFeedbackLabel.setText(passwordFeedback);
+            String passwordFeedback2 = getPasswordFeedback2(password);
+            passwordFeedbackLabel2.setText(passwordFeedback2);
+        }else
+            passwordFeedbackLabel.setText("");
     }
 
     private String getPasswordFeedback(String password) {
