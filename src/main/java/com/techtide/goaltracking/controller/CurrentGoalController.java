@@ -37,7 +37,7 @@ public class CurrentGoalController implements Initializable {
     @FXML
     public ChoiceBox savedCurrentGoals;
     @FXML
-    public Button deleteButoon;
+    public Button deleteButton;
     @FXML
     private TextArea taskTextArea;
 
@@ -54,6 +54,16 @@ public class CurrentGoalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         populateDropdown();
+        initializeComponents();}
+    private void initializeComponents() {
+        setupGoalChoiceBox();
+        setupSavedCurrentGoals();
+        setupHoursSpinner();
+        setupMinutesSpinner();
+        setupDatePicker();
+    }
+
+    private void setupGoalChoiceBox() {
         goalChoiceBox.setItems(FXCollections.observableList(getUncompletedGoals()));
         goalChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -62,6 +72,9 @@ public class CurrentGoalController implements Initializable {
                 datePicker.setValue(null);
             }
         });
+    }
+
+    private void setupSavedCurrentGoals() {
         savedCurrentGoals.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 goalChoiceBox.getSelectionModel().clearSelection();
@@ -69,23 +82,27 @@ public class CurrentGoalController implements Initializable {
                 resetData();
             }
         });
+    }
+
+    private void setupHoursSpinner() {
         TextFormatter<Integer> hoursFormatter = createIntegerTextFormatter(0);
         hoursSpinner.getEditor().setTextFormatter(hoursFormatter);
         hoursSpinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
-                try {
-                    Integer intValue = newValue.length() > 0 ? Integer.parseInt(newValue) : 0;
-                    if (intValue < 0 || intValue > 24) {
-                        FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter value between 0 and 24.");
-                        hoursSpinner.getValueFactory().setValue(24);
-                    } else {
-                        hoursSpinner.getValueFactory().setValue(intValue);
-                    }
-                }catch (Exception e){
+            try {
+                Integer intValue = newValue.length() > 0 ? Integer.parseInt(newValue) : 0;
+                if (intValue < 0 || intValue > 24) {
                     FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter value between 0 and 24.");
-
+                    hoursSpinner.getValueFactory().setValue(24);
+                } else {
+                    hoursSpinner.getValueFactory().setValue(intValue);
                 }
+            } catch (Exception e) {
+                FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for hours. Please enter value between 0 and 24.");
+            }
         });
+    }
 
+    private void setupMinutesSpinner() {
         TextFormatter<Integer> minutesFormatter = createIntegerTextFormatter(0);
         minutesSpinner.getEditor().setTextFormatter(minutesFormatter);
         minutesSpinner.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
@@ -94,24 +111,22 @@ public class CurrentGoalController implements Initializable {
                 if (intValue < 0 || intValue > 59) {
                     FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for minutes. Please enter value between 0 and 59.");
                     minutesSpinner.getValueFactory().setValue(59);
-                }
-                else {
+                } else {
                     minutesSpinner.getValueFactory().setValue(intValue);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Invalid value for minutes. Please enter value between 0 and 59.");
-
             }
         });
-
-
+    }
+    private void setupDatePicker() {
         datePicker.getEditor().setDisable(true);
         datePicker.valueProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue != null && goalChoiceBox.getSelectionModel().isEmpty() && savedCurrentGoals.getSelectionModel().isEmpty() && !isErrorMessageShown) {
                 FXUtils.showMessage(Alert.AlertType.ERROR, "Please select a goal before setting a date.");
                 isErrorMessageShown = true;
                 datePicker.setValue(null);
-            } else{
+            } else {
                 isErrorMessageShown = false;
             }
             if (newValue != null && savedCurrentGoals.getValue() != null) {
@@ -119,6 +134,7 @@ public class CurrentGoalController implements Initializable {
             }
         });
     }
+
     private TextFormatter<Integer> createIntegerTextFormatter(int defaultValue) {
         return new TextFormatter<>(
                 new IntegerStringConverter(),
