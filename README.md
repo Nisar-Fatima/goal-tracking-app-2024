@@ -40,10 +40,5 @@ The application streamlines goal management, time tracking, and progress monitor
 |----------------------|------------|--------------|
 | <img src="https://github.com/user-attachments/assets/72e3979d-34d5-4899-8bd3-b474622a68cd" width="300"/> | <img src="https://github.com/user-attachments/assets/c7f81eea-4870-4cd8-a56e-4eef8ad67f20" width="300"/> | <img src="https://github.com/user-attachments/assets/e054b028-212c-411a-be99-32441751a8d6" width="300"/> |
 
----
-
-## Demo Video
-
-[🎥 Watch the demo video here]([https://www.linkedin.com/posts/your-link-here](https://www.linkedin.com/posts/nisar-fatima_java-springboot-docker-activity-7376735364029308928-_8rF?utm_source=share&utm_medium=member_desktop&rcm=ACoAADwKAsMB-5RHGRnSdCl5t5MBjL1Lqn8j0Pw))  
 
 
